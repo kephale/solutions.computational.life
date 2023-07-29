@@ -194,11 +194,7 @@ dependencies:
 
 def run():
     import napari
-    from skimage.io import imread
-    from album.runner.api import get_args
 
-    img = imread(get_args().input)
-    napari.view_image(img, rgb=False, name="Input image")
     napari.run()
 
 
