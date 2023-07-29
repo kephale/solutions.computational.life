@@ -1,9 +1,9 @@
 module.exports = {
-  pathPrefix: `/catalogs/default`,
+  pathPrefix: `/solutions`,
   siteMetadata: {
-    title: 'album catalog',
-    subtitle: 'sharing favourite solutions across tools and domains',
-    catalog_url: 'https://gitlab.com/album-app/catalogs/templates/catalog-gatsby',
+    title: 'solutions.computational.life',
+    subtitle: 'sharing computational life solutions across tools and domains',
+    catalog_url: 'https://solutions.computational.life',
     menuLinks:[
       {
          name:'Catalog',
