@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: `/solutions`,
+  pathPrefix: `/`,
   siteMetadata: {
     title: 'solutions.computational.life',
     subtitle: 'sharing computational life solutions across tools and domains',
