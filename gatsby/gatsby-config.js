@@ -2,7 +2,7 @@ module.exports = {
   pathPrefix: `/`,
   siteMetadata: {
     title: 'solutions.computational.life',
-    subtitle: 'sharing computational life solutions across tools and domains',
+    subtitle: 'sharing computational life',
     catalog_url: 'https://solutions.computational.life',
     menuLinks:[
       {
