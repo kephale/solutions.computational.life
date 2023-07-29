@@ -1,0 +1,27 @@
+album_api_version: 0.5.1
+args:
+- description: The image about to be displayed in napari.
+  name: input
+  required: true
+  type: file
+changelog: null
+cite:
+- doi: 10.5281/zenodo.3555620
+  text: 'napari contributors (2019). napari: a multi-dimensional image viewer for
+    python.'
+  url: https://github.com/napari/napari
+covers:
+- description: A dataset displayed in napari.
+  source: cover.png
+description: An Album solution for displaying a dataset with napari.
+group: de.mdc-berlin
+license: MIT
+name: view-in-napari
+solution_creators:
+- Deborah Schmidt
+tags:
+- template
+- napari
+timestamp: '2023-07-29T12:05:14.029718'
+title: View a dataset in napari v0.4.16
+version: 0.1.0
