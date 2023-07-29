@@ -2,8 +2,8 @@
   "name": "catalog-gatsby",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Your name <your@mail.org>",
-  "license": "",
+  "author": "Kyle Harrington <solutions.computational.life@kyleharrington.com>",
+  "license": "Apache V2",
   "scripts": {
     "develop": "gatsby develop",
     "build": "gatsby build"
