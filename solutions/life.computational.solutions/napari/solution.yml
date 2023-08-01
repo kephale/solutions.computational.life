@@ -1,0 +1,24 @@
+album_api_version: 0.5.1
+args: []
+changelog: null
+cite:
+- doi: 10.5281/zenodo.3555620
+  text: 'napari contributors (2019). napari: a multi-dimensional image viewer for
+    python.'
+  url: https://github.com/napari/napari
+covers:
+- description: Open the napari viewer.
+  source: cover.png
+description: Open napari.
+group: life.computational.solutions
+license: MIT
+name: napari
+solution_creators:
+- Kyle Harrington
+- Deborah Schmidt
+tags:
+- Python
+- napari
+timestamp: '2023-07-29T14:15:08.845863'
+title: Open napari
+version: 0.0.1-SNAPSHOT

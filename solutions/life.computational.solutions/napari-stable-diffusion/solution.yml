@@ -1,0 +1,24 @@
+album_api_version: 0.5.1
+args:
+- description: The prompt to render with napari-stable-diffusion
+  name: prompt
+  required: true
+  type: string
+changelog: null
+cite: []
+covers:
+- description: Open napari-stable-diffusion.
+  source: cover.png
+description: Open napari-stable-diffusion.
+group: life.computational.solutions
+license: MIT
+name: napari-stable-diffusion
+solution_creators:
+- Kyle Harrington
+tags:
+- Python
+- napari
+- stable diffusion
+timestamp: '2023-07-31T07:59:02.513419'
+title: napari-stable-diffusion
+version: 0.0.1-SNAPSHOT

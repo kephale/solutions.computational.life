@@ -147,7 +147,48 @@ dependencies:
     - python-dotenv
     - validate-pyproject[all]
     - segment-anything
-
+    - "--editable=git+git@github.com:napari/napari.git"
+    - "--editable=git+https://github.com/tlambert03/napari-omero.git"
+    - "--editable=git+https://github.com/napari/napari-console.git"
+    - "--editable=git+https://github.com/napari/napari-animation.git"
+    - "--editable=git+https://github.com/CBI-PITT/napari-imaris-loader"
+    - "--editable=git+https://github.com/leoguignard/napari-turing"
+    - "--editable=git+git@github.com:kephale/napari-stable-diffusion.git"
+    - "--editable=git+https://github.com/DamCB/tyssue"
+    - "--editable=git+https://github.com/DamCB/tyssue-demo"
+    - "--editable=git+https://github.com/DamCB/tyssue-notebooks"
+    - "--editable=git+git@github.com:kephale/napari-tyssue.git"
+    - "--editable=git+git@github.com:seung-lab/corgie.git"
+    - "--editable=git+git@github.com:kephale/napari-hierarchical.git"
+    - "--editable=git+https://github.com/ome/napari-ome-zarr.git"
+    - "--editable=git+git@github.com:andy-sweet/napari-metadata.git"
+    - "--editable=git+https://github.com/jo-mueller/napari-stl-exporter.git"
+    - "--editable=git+https://github.com/kephale/tootapari.git"
+    - "--editable=git+https://github.com/letmaik/pyvirtualcam"
+    - "--editable=git+git@github.com:kephale/napari-qrcode.git"
+    - "--editable=git+git@github.com:kephale/pulser.git"
+    - "--editable=git+git@github.com:JaneliaSciComp/KLEIO-Python-SDK.git"
+    - "--editable=git+git@github.com:kephale/napari-kleio"
+    - "--editable=git+git@github.com:napari/napari-graph.git"
+    - "--editable=git+git@github.com:kephale/napari-conference.git"
+    - "--editable=git+git@github.com:haesleinhuepf/napari-blender-bridge.git"
+    - "--editable=git+git@github.com:imagej/napari-imagej.git"
+    - "--editable=git+git@github.com:kephale/napari-workshop-browser.git"
+    - "--editable=git+git@github.com:kephale/napari-workshop-template.git"
+    - "--editable=git+git+https://github.com/morphometrics/morphometrics-engine.git"
+    - napari-stress
+    - napari-pymeshlab
+    - "--editable=git+git+https://github.com/kevinyamauchi/morphometrics.git"
+    - napari-skimage-regionprops
+    - napari-geojson
+    - napari-plot-profile
+    - redlionfish
+    - btrack
+    - "--editable=git+git+https://github.com/lowe-lab-ucl/arboretum.git"
+    - "--editable=git+git+https://github.com/hanjinliu/napari-spreadsheet.git"
+    - "--editable=git+git+https://github.com/jacopoabramo/napari-live-recording.git"
+    - "--editable=git+git+https://github.com/JoOkuma/napari-segment-anything.git"
+    - natari
 """)
 
 
@@ -156,8 +197,6 @@ def run():
     from skimage.io import imread
     from album.runner.api import get_args
 
-    img = imread(get_args().input)
-    napari.view_image(img, rgb=False, name="Input image")
     napari.run()
 
 
