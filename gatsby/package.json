@@ -9,6 +9,8 @@
     "build": "gatsby build"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@theme-ui/mdx": "^0.16.0",
     "gatsby": "^3.3.0",
     "gatsby-plugin-theme-ui": "^0.16.0",
     "gatsby-theme-album": "^0.6.0",
