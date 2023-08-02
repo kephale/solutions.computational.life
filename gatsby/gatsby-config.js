@@ -15,5 +15,5 @@ module.exports = {
       },
     ]
   },
-  plugins: [{ resolve: `gatsby-theme-album`, options: {} }],
+    plugins: [{ resolve: `gatsby-theme-album`, options: {} }, `gatsby-plugin-theme-ui`],
 }
