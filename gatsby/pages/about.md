@@ -6,7 +6,7 @@ permalink: /about/
 
 This is a catalog of album solutions created by [Kyle Harrington](https://kyleharrington.com).
 
-## Install this catalog
+## Getting started
 
 1. Install album
 2. Add this catalog:
