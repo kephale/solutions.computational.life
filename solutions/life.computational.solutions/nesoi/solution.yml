@@ -1,0 +1,18 @@
+album_api_version: 0.5.1
+args: []
+changelog: null
+cite: []
+covers:
+- description: Open the napari viewer in nesoi environment.
+  source: cover.png
+description: Open napari in the nesoi environment.
+group: life.computational.solutions
+license: MIT
+name: nesoi
+solution_creators:
+- Kyle Harrington
+tags:
+- Python
+timestamp: '2023-08-03T21:19:52.856119'
+title: Open napari
+version: 0.0.1-SNAPSHOT
