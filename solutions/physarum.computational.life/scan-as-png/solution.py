@@ -54,7 +54,7 @@ def run():
     timestep = int(get_args().timestep)
     try:
         while True:
-            res = scan_image(get_args().directory, get_args().device)
+            res = scan_image(get_args().output_directory, get_args().device)
             time_taken = res["elapsed_time"]
             sleep_time = max(timestep - time_taken, 0)  # Ensure non-negative sleep time
             time.sleep(
@@ -67,7 +67,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="scan-as-png",
-    version="0.0.1",
+    version="0.0.2",
     title="Scan images as PNGs.",
     description="An Album solution for scanning images into PNG files in a directory.",
     solution_creators=["Kyle Harrington"],
