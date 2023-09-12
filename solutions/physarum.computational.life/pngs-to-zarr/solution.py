@@ -5,7 +5,6 @@ from album.runner.api import setup
 # Please import additional modules at the beginning of your method declarations.
 # More information: https://docs.album.solutions/en/latest/solution-development/
 
-
 def read_images_to_zarr(directory, zarr_path):
     """
     Read RGB PNG images from a directory and store them in a Zarr array.
@@ -68,7 +67,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="pngs-to-zarr",
-    version="0.0.7",
+    version="0.0.8",
     title="Convert PNGs to zarr.",
     description="An Album solution for converting a directory of PNGs into a zarr",
     solution_creators=["Kyle Harrington"],
@@ -101,7 +100,3 @@ setup(
     },
 )
 
-if __name__ == "__main__":
-    png_path = "/Users/kharrington/Data/Physarum/experiment_004_mini"
-    zarr_path = "./experiment_004_mini_v1.zarr"
-    read_images_to_zarr(png_path, zarr_path)
