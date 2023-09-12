@@ -18,6 +18,9 @@ def read_images_to_zarr(directory, zarr_path):
     import numpy as np
     import zarr
 
+    import dask.array as da
+    from dask import delayed
+
     from ome_zarr.io import parse_url
     from ome_zarr.writer import write_image
 
@@ -31,19 +34,24 @@ def read_images_to_zarr(directory, zarr_path):
     img_shape = sample_img.shape
     img_dtype = sample_img.dtype
 
-    stack = np.zeros(
-        tuple([len(image_files)] + list(img_shape)), dtype=img_dtype
-    )
-
-    print("Starting to read PNGs")
-    for idx, image_file in enumerate(image_files):
-        if idx % 10 == 0:
-            print(f"Read {idx} of {len(image_files)}")
+    # TODO read with dask delayed
+    # Use dask.delayed to lazily read each image
+    @delayed
+    def read_image(filename, image_directory=directory):
         img = imageio.imread(
-            os.path.join(directory, image_file)
+            os.path.join(image_directory, filename)
         )        
-        stack[idx, :, :, :] = np.moveaxis(img, -1, 0)
+        return np.moveaxis(img, -1, 0)
 
+    # Create a list of delayed objects
+    images_delayed = [read_image(f) for f in image_files]
+
+    # Convert one delayed image to Dask array to get its shape and dtype
+    sample = da.from_delayed(images_delayed[0], shape=img_shape, dtype=img_dtype)
+
+    # Combine the delayed objects into a Dask array
+    stack = da.stack([da.from_delayed(img, shape=sample.shape, dtype=sample.dtype) for img in images_delayed], axis=0)
+        
     print("Starting to write zarr")
     os.mkdir(zarr_path)
     store = parse_url(zarr_path, mode="w").store
@@ -67,7 +75,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="pngs-to-zarr",
-    version="0.0.8",
+    version="0.0.9",
     title="Convert PNGs to zarr.",
     description="An Album solution for converting a directory of PNGs into a zarr",
     solution_creators=["Kyle Harrington"],
@@ -100,3 +108,7 @@ setup(
     },
 )
 
+# if False:
+#     png_directory = "~/Data/Physarum/experiment_004_mini"
+#     zarr_path = "~/Data/Physarum/experiment_004_mini_v2.zarr"
+#     read_images_to_zarr(png_directory, zarr_path)
