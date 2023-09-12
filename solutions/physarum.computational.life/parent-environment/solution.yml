@@ -1,6 +1,6 @@
 album_api_version: 0.5.1
 args: []
-changelog: null
+changelog: Add ome-zarr dependency
 cite:
 - text: Kyle Harrington.
   url: https://kyleharrington.com
@@ -12,10 +12,9 @@ name: parent-environment
 solution_creators:
 - Kyle Harrington
 tags:
-- imaging
-- png
+- imageing
 - zarr
 - Python
-timestamp: '2023-09-12T11:26:58.227564'
+timestamp: '2023-09-12T11:38:55.683030'
 title: Parent environment for physarum.computational.life.
-version: 0.0.1
+version: 0.0.2
