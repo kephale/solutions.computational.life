@@ -21,6 +21,7 @@ import os
 import subprocess
 import time
 from datetime import datetime
+import imageio
 
 def process_image(idx_image_file_tuple, directory, z):
     idx, image_file = idx_image_file_tuple
@@ -62,9 +63,6 @@ def read_images_to_zarr(directory, zarr_path):
 
 
 def run():
-    import os
-    import imageio
-    
     from album.runner.api import get_args
 
     read_images_to_zarr(get_args().png_directory, get_args().zarr_path)
@@ -73,7 +71,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="pngs-to-zarr",
-    version="0.0.2",
+    version="0.0.3",
     title="Convert PNGs to zarr.",
     description="An Album solution for converting a directory of PNGs into a zarr",
     solution_creators=["Kyle Harrington"],

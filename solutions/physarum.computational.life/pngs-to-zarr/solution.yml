@@ -24,6 +24,6 @@ tags:
 - png
 - zarr
 - Python
-timestamp: '2023-09-12T10:37:26.418966'
+timestamp: '2023-09-12T10:48:42.813218'
 title: Convert PNGs to zarr.
-version: 0.0.2
+version: 0.0.3
