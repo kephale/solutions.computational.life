@@ -15,6 +15,7 @@ dependencies:
   - numpy
   - imageio
   - ome-zarr
+  - opencv
 """
 )
 
@@ -26,12 +27,12 @@ def run():
 setup(
     group="physarum.computational.life",
     name="parent-environment",
-    version="0.0.2",
+    version="0.0.3",
     title="Parent environment for physarum.computational.life.",
     description="A parent environment for physarum.computational.life solutions",
     solution_creators=["Kyle Harrington"],
     cite=[{"text": "Kyle Harrington.", "url": "https://kyleharrington.com"}],
-    tags=["imageing", "zarr", "Python"],
+    tags=["imaging", "zarr", "Python"],
     license="MIT",
     covers=[],
     album_api_version="0.5.1",
