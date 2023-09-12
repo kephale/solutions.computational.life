@@ -46,7 +46,7 @@ def read_images_to_zarr(directory, zarr_path):
     write_image(
         image=stack,
         group=root,
-        axes="tczyx",
+        axes="tcyx",
         storage_options=dict(chunks=img_shape),
     )
 
@@ -62,7 +62,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="pngs-to-zarr",
-    version="0.0.5",
+    version="0.0.6",
     title="Convert PNGs to zarr.",
     description="An Album solution for converting a directory of PNGs into a zarr",
     solution_creators=["Kyle Harrington"],

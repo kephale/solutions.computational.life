@@ -8,7 +8,7 @@ args:
   name: zarr_path
   required: true
   type: string
-changelog: First attempt at supporting OME-NGFF
+changelog: Fix axes bug
 cite:
 - text: Kyle Harrington.
   url: https://kyleharrington.com
@@ -24,6 +24,6 @@ tags:
 - png
 - zarr
 - Python
-timestamp: '2023-09-12T12:07:03.999367'
+timestamp: '2023-09-12T12:11:05.345897'
 title: Convert PNGs to zarr.
-version: 0.0.5
+version: 0.0.6
