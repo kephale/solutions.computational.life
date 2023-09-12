@@ -1,0 +1,21 @@
+album_api_version: 0.5.1
+args: []
+changelog: null
+cite:
+- text: Kyle Harrington.
+  url: https://kyleharrington.com
+covers: []
+description: A parent environment for physarum.computational.life solutions
+group: physarum.computational.life
+license: MIT
+name: parent-environment
+solution_creators:
+- Kyle Harrington
+tags:
+- imaging
+- png
+- zarr
+- Python
+timestamp: '2023-09-12T11:26:58.227564'
+title: Parent environment for physarum.computational.life.
+version: 0.0.1
