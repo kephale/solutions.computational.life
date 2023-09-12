@@ -17,6 +17,7 @@ dependencies:
 """
 )
 
+import os
 import subprocess
 import time
 from datetime import datetime
@@ -72,7 +73,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="pngs-to-zarr",
-    version="0.0.1",
+    version="0.0.2",
     title="Convert PNGs to zarr.",
     description="An Album solution for converting a directory of PNGs into a zarr",
     solution_creators=["Kyle Harrington"],
