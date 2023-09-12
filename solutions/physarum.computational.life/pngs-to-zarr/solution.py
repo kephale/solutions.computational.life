@@ -28,6 +28,7 @@ def read_images_to_zarr(directory, zarr_path):
 
     # Load the first image to get shape and data type
     sample_img = imageio.imread(os.path.join(directory, image_files[0]))
+    sample_img = np.moveaxis(sample_img, -1, 0)
     img_shape = sample_img.shape
     img_dtype = sample_img.dtype
 
@@ -35,11 +36,16 @@ def read_images_to_zarr(directory, zarr_path):
         tuple([len(image_files)] + list(img_shape)), dtype=img_dtype
     )
 
+    print("Starting to read PNGs")
     for idx, image_file in enumerate(image_files):
-        stack[idx, :, :, :] = imageio.imread(
+        if idx % 10 == 0:
+            print(f"Read {idx} of {len(image_files)}")
+        img = imageio.imread(
             os.path.join(directory, image_file)
-        )
+        )        
+        stack[idx, :, :, :] = np.moveaxis(img, -1, 0)
 
+    print("Starting to write zarr")
     os.mkdir(zarr_path)
     store = parse_url(zarr_path, mode="w").store
     root = zarr.group(store=store)
@@ -62,7 +68,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="pngs-to-zarr",
-    version="0.0.6",
+    version="0.0.7",
     title="Convert PNGs to zarr.",
     description="An Album solution for converting a directory of PNGs into a zarr",
     solution_creators=["Kyle Harrington"],
@@ -94,3 +100,8 @@ setup(
         }
     },
 )
+
+if __name__ == "__main__":
+    png_path = "/Users/kharrington/Data/Physarum/experiment_004_mini"
+    zarr_path = "./experiment_004_mini_v1.zarr"
+    read_images_to_zarr(png_path, zarr_path)
