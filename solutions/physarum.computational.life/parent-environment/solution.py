@@ -16,6 +16,7 @@ dependencies:
   - imageio
   - ome-zarr
   - opencv
+  - napari
 """
 )
 
