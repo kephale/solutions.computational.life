@@ -55,7 +55,7 @@ def read_images_to_zarr(directory, zarr_path):
             img = np.moveaxis(img, -1, 0)
 
             # Resize the Zarr array to accommodate the new image
-            zarr_array.resize(tuple([zarr_array.shape[0] + 1] + zarr_array.shape[1:]))
+            zarr_array.resize(tuple([zarr_array.shape[0] + 1] + list(zarr_array.shape[1:])))
 
             # Store the new image in the zarr array
             zarr_array[-1] = img
