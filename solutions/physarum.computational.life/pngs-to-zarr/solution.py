@@ -33,7 +33,7 @@ def read_images_to_zarr(directory, zarr_path):
 
     # Open the Zarr store
     store = zarr.NestedDirectoryStore(zarr_path)
-    root = zarr.group(store=store, overwrite=False)
+    root = zarr.group(store=store, overwrite=True)
 
     chunks = (1, 1024, 1024, 3)
 
