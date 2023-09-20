@@ -5,6 +5,7 @@ from album.runner.api import setup
 # Please import additional modules at the beginning of your method declarations.
 # More information: https://docs.album.solutions/en/latest/solution-development/
 
+
 def read_images_to_zarr(directory, zarr_path):
     """
     Read RGB PNG images from a directory and store them in a Zarr array.
@@ -18,14 +19,8 @@ def read_images_to_zarr(directory, zarr_path):
     import numpy as np
     import zarr
 
-    import dask.array as da
-    from dask import delayed
-
-    from ome_zarr.io import parse_url
-    from ome_zarr.writer import write_image
-
     print(f"Reading from {directory} and writing to {zarr_path}")
-    
+
     # Get the list of image files in the directory
     image_files = [f for f in os.listdir(directory) if f.endswith('.png')]
     image_files.sort()  # sort filenames to maintain order
@@ -36,40 +31,42 @@ def read_images_to_zarr(directory, zarr_path):
     img_shape = sample_img.shape
     img_dtype = sample_img.dtype
 
-    # TODO read with dask delayed
-    # Use dask.delayed to lazily read each image
-    @delayed
-    def read_image(filename, image_directory=directory):
+    # Open the Zarr store
+    store = zarr.NestedDirectoryStore(zarr_path)
+    root = zarr.group(store=store, overwrite=False)
+
+    # If dataset doesn't exist, create it with an extensible first dimension
+    if 'images' not in root:
+        zarr_array = root.zeros(
+            'images',
+            shape=(0, *img_shape),
+            dtype=img_dtype,
+            chunks=(1, *img_shape[1:]),
+            compressor=zarr.Blosc(
+                cname='zstd', clevel=3, shuffle=zarr.Blosc.SHUFFLE
+            ),
+        )
+    else:
+        zarr_array = root['images']
+
+    for filename in image_files:
         try:
-            img = imageio.imread(
-                os.path.join(image_directory, filename)
-            )
-            return np.moveaxis(img, -1, 0)
+            img = imageio.imread(os.path.join(directory, filename))
+            img = np.moveaxis(img, -1, 0)
+
+            # Resize the Zarr array to accommodate the new image
+            zarr_array.resize(zarr_array.shape[0] + 1, axis=0)
+
+            # Store the new image in the zarr array
+            zarr_array[-1] = img
+
         except OSError as e:
-            if "broken data stream" in str(e):  # Specifically handle this error
+            if "broken data stream" in str(
+                e
+            ):  # Specifically handle this error
                 print(f"Error reading image '{filename}': {e}")
             else:  # Handle any other OSErrors
                 print(f"Unexpected error reading image '{filename}': {e}")
-            return None
-
-    # Create a list of delayed objects
-    images_delayed = [read_image(f) for f in image_files]
-
-    # Combine the delayed objects into a Dask array
-    stack = da.stack([da.from_delayed(img, shape=img_shape, dtype=img_dtype) for img in images_delayed], axis=0)
-
-    print(f"Stack shape {stack.shape} and type {stack.dtype}")
-    
-    print("Starting to write zarr")
-    os.mkdir(zarr_path)
-    store = parse_url(zarr_path, mode="w").store
-    root = zarr.group(store=store)
-    write_image(
-        image=stack,
-        group=root,
-        axes="tcyx",
-        storage_options=dict(chunks=img_shape),
-    )
 
     print(f"All images stored in {zarr_path}")
 
@@ -83,7 +80,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="pngs-to-zarr",
-    version="0.0.10",
+    version="0.0.12",
     title="Convert PNGs to zarr.",
     description="An Album solution for converting a directory of PNGs into a zarr",
     solution_creators=["Kyle Harrington"],

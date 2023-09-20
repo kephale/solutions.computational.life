@@ -8,7 +8,7 @@ args:
   name: zarr_path
   required: true
   type: string
-changelog: Check/log
+changelog: Update
 cite:
 - text: Kyle Harrington.
   url: https://kyleharrington.com
@@ -24,6 +24,6 @@ tags:
 - png
 - zarr
 - Python
-timestamp: '2023-09-20T07:56:11.715969'
+timestamp: '2023-09-20T10:43:17.950176'
 title: Convert PNGs to zarr.
-version: 0.0.10
+version: 0.0.12
