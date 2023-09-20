@@ -29,7 +29,7 @@ First attempt at supporting OME-NGFF
 
 
 ## [0.0.10] - 2023-09-20
-
+Check/log
 
 ## [0.0.1] - 2023-09-12
 

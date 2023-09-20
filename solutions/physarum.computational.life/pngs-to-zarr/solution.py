@@ -40,10 +40,17 @@ def read_images_to_zarr(directory, zarr_path):
     # Use dask.delayed to lazily read each image
     @delayed
     def read_image(filename, image_directory=directory):
-        img = imageio.imread(
-            os.path.join(image_directory, filename)
-        )        
-        return np.moveaxis(img, -1, 0)
+        try:
+            img = imageio.imread(
+                os.path.join(image_directory, filename)
+            )
+            return np.moveaxis(img, -1, 0)
+        except OSError as e:
+            if "broken data stream" in str(e):  # Specifically handle this error
+                print(f"Error reading image '{filename}': {e}")
+            else:  # Handle any other OSErrors
+                print(f"Unexpected error reading image '{filename}': {e}")
+            return None
 
     # Create a list of delayed objects
     images_delayed = [read_image(f) for f in image_files]
