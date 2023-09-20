@@ -24,6 +24,8 @@ def read_images_to_zarr(directory, zarr_path):
     from ome_zarr.io import parse_url
     from ome_zarr.writer import write_image
 
+    print(f"Reading from {directory} and writing to {zarr_path}")
+    
     # Get the list of image files in the directory
     image_files = [f for f in os.listdir(directory) if f.endswith('.png')]
     image_files.sort()  # sort filenames to maintain order
@@ -46,12 +48,11 @@ def read_images_to_zarr(directory, zarr_path):
     # Create a list of delayed objects
     images_delayed = [read_image(f) for f in image_files]
 
-    # Convert one delayed image to Dask array to get its shape and dtype
-    sample = da.from_delayed(images_delayed[0], shape=img_shape, dtype=img_dtype)
-
     # Combine the delayed objects into a Dask array
-    stack = da.stack([da.from_delayed(img, shape=sample.shape, dtype=sample.dtype) for img in images_delayed], axis=0)
-        
+    stack = da.stack([da.from_delayed(img, shape=img_shape, dtype=img_dtype) for img in images_delayed], axis=0)
+
+    print(f"Stack shape {stack.shape} and type {stack.dtype}")
+    
     print("Starting to write zarr")
     os.mkdir(zarr_path)
     store = parse_url(zarr_path, mode="w").store
@@ -75,7 +76,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="pngs-to-zarr",
-    version="0.0.9",
+    version="0.0.10",
     title="Convert PNGs to zarr.",
     description="An Album solution for converting a directory of PNGs into a zarr",
     solution_creators=["Kyle Harrington"],
@@ -108,7 +109,7 @@ setup(
     },
 )
 
-# if False:
-#     png_directory = "~/Data/Physarum/experiment_004_mini"
-#     zarr_path = "~/Data/Physarum/experiment_004_mini_v2.zarr"
+# if True:
+#     png_directory = "/Users/kharrington/Data/Physarum/experiment_004_mini"
+#     zarr_path = "/Users/kharrington/Data/Physarum/experiment_004_mini_v2.zarr"
 #     read_images_to_zarr(png_directory, zarr_path)
