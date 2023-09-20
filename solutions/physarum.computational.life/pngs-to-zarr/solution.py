@@ -35,13 +35,15 @@ def read_images_to_zarr(directory, zarr_path):
     store = zarr.NestedDirectoryStore(zarr_path)
     root = zarr.group(store=store, overwrite=False)
 
+    chunks = (1, 1024, 1024, 3)
+
     # If dataset doesn't exist, create it with an extensible first dimension
     if 'images' not in root:
         zarr_array = root.zeros(
             'images',
             shape=(0, *img_shape),
             dtype=img_dtype,
-            chunks=(1, *img_shape[1:]),
+            chunks=chunks,
             compressor=zarr.Blosc(
                 cname='zstd', clevel=3, shuffle=zarr.Blosc.SHUFFLE
             ),
