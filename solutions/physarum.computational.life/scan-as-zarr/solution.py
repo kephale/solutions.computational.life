@@ -71,7 +71,7 @@ def scan_image_to_zarr(zarr_path, device, resolution=300):
         zarr_array = root['images']
 
     # Append new image to the Zarr array
-    zarr_array.resize(zarr_array.shape[0] + 1, axis=0)
+    zarr_array.resize(tuple([zarr_array.shape[0] + 1] + list(zarr_array.shape[1:])))
     zarr_array[-1] = arr
         
     # Close the scanning device
@@ -103,7 +103,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="scan-as-zarr",
-    version="0.0.2",
+    version="0.0.3",
     title="Scan images as zarr.",
     description="An Album solution for scanning a timeseries into a zarr file.",
     solution_creators=["Kyle Harrington"],
