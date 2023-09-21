@@ -103,7 +103,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="scan-as-zarr",
-    version="0.0.1",
+    version="0.0.2",
     title="Scan images as zarr.",
     description="An Album solution for scanning a timeseries into a zarr file.",
     solution_creators=["Kyle Harrington"],
