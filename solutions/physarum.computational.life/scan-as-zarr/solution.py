@@ -73,6 +73,8 @@ def scan_image_to_zarr(zarr_path, device, resolution=300):
     # Append new image to the Zarr array
     zarr_array.resize(tuple([zarr_array.shape[0] + 1] + list(zarr_array.shape[1:])))
     zarr_array[-1] = arr
+
+    print(f"New zarr shape: {zarr_array.shape}")
         
     # Close the scanning device
     dev.close()
@@ -86,6 +88,8 @@ def run():
     from album.runner.api import get_args
 
     import time
+
+    print("Starting to scan.")    
     
     timestep = int(get_args().timestep)
     try:
@@ -95,6 +99,7 @@ def run():
             sleep_time = max(
                 timestep - time_taken, 0
             )  # Ensure non-negative sleep time
+            print(f"Finished scan at {time.time()}")
             time.sleep(sleep_time)
     except KeyboardInterrupt:
         print("\nScript terminated by user.")
@@ -103,7 +108,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="scan-as-zarr",
-    version="0.0.3",
+    version="0.0.4",
     title="Scan images as zarr.",
     description="An Album solution for scanning a timeseries into a zarr file.",
     solution_creators=["Kyle Harrington"],

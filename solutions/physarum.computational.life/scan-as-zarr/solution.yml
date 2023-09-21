@@ -30,6 +30,6 @@ tags:
 - acquisition
 - Python
 - zarr
-timestamp: '2023-09-21T13:43:06.480594'
+timestamp: '2023-09-21T13:46:46.703869'
 title: Scan images as zarr.
-version: 0.0.3
+version: 0.0.4
