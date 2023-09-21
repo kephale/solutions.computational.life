@@ -11,10 +11,12 @@ env_file = StringIO(
   - defaults
 dependencies:
   - python=3.10
-  - python-sane
   - zarr
   - numpy
   - Pillow
+  - pip
+  - pip:
+    - python-sane
 """
 )
 
