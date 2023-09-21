@@ -53,11 +53,11 @@ def scan_image_to_zarr(zarr_path, device, resolution=300):
 
     # Start the scan and get a numpy array
     dev.start()
-    arr = dev.arr_snap()
+    arr = np.transpose(dev.arr_snap())
 
     # Check and adjust data type for consistency
     if arr.dtype == np.uint16:
-        arr = (arr / 255).astype(np.uint8)
+        arr = (arr / 255.0).astype(np.uint8)
 
     # Open the Zarr store
     store = zarr.NestedDirectoryStore(zarr_path)
@@ -108,7 +108,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="scan-as-zarr",
-    version="0.0.4",
+    version="0.0.5",
     title="Scan images as zarr.",
     description="An Album solution for scanning a timeseries into a zarr file.",
     solution_creators=["Kyle Harrington"],
