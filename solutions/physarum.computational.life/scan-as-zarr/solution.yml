@@ -13,7 +13,7 @@ args:
   name: timestep
   required: true
   type: string
-changelog: Fix
+changelog: null
 cite:
 - text: Kyle Harrington.
   url: https://kyleharrington.com
@@ -30,6 +30,6 @@ tags:
 - acquisition
 - Python
 - zarr
-timestamp: '2023-09-21T17:48:06.250468'
+timestamp: '2023-09-25T21:59:21.778268'
 title: Scan images as zarr.
-version: 0.0.5
+version: 0.0.6

@@ -15,100 +15,92 @@ dependencies:
   - numpy
   - Pillow
   - pip
-  - pip:
-    - python-sane
 """
 )
 
 
-
-def scan_image_to_zarr(zarr_path, device, resolution=300):
+def scan_image_and_append_to_zarr(directory, zarr_path, device, resolution=300):
+    from io import StringIO
     import subprocess
     import time
     from datetime import datetime
-
-    import sane
-    import numpy as np
     import zarr
+    import numpy as np
     from PIL import Image
-
+    import tempfile
+    import os
     
-    start_time = time.time()
-    
-    # Initialize sane
-    sane.init()
+    # Get the current date and time in a specific format
+    current_datetime = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-    # Open specified device
-    dev = sane.open(device)
+    # Create a temporary file
+    with tempfile.NamedTemporaryFile(suffix='.png', dir=directory, delete=False) as temp:
+        output_file = temp.name
+        cmd = [
+            "scanimage",
+            "--format",
+            "png",
+            "-d",
+            device,
+            "--resolution",
+            str(resolution),
+            "--mode",
+            "Color",
+            "--output-file",
+            output_file,
+        ]
 
-    # Set options
-    params = dev.get_parameters()
-    try:
-        dev.depth = 8  # 8-bit depth
-        dev.mode = 'color'  # color mode
-        dev.resolution = resolution  # resolution
-    except Exception as e:
-        print(f"Failed to set scan settings: {e}")
-        return
-
-    # Start the scan and get a numpy array
-    dev.start()
-    arr = np.transpose(dev.arr_snap())
-
-    # Check and adjust data type for consistency
-    if arr.dtype == np.uint16:
-        arr = (arr / 255.0).astype(np.uint8)
-
-    # Open the Zarr store
-    store = zarr.NestedDirectoryStore(zarr_path)
-    root = zarr.group(store=store, overwrite=False)
-
-    # If dataset doesn't exist, create it with an extensible first dimension
-    if 'images' not in root:
-        zarr_array = root.zeros('images', shape=(0, *arr.shape), dtype=arr.dtype, chunks=(1, 1024, 1024, 3), 
-                                compressor=zarr.Blosc(cname='zstd', clevel=3, shuffle=zarr.Blosc.SHUFFLE))
-    else:
-        zarr_array = root['images']
-
-    # Append new image to the Zarr array
-    zarr_array.resize(tuple([zarr_array.shape[0] + 1] + list(zarr_array.shape[1:])))
-    zarr_array[-1] = arr
-
-    print(f"New zarr shape: {zarr_array.shape}")
+        # Execute the command
+        start_time = time.time()  # Note the start time
+        print(f"Running: {cmd}")
+        subprocess.run(cmd)
         
-    # Close the scanning device
-    dev.close()
+        # Open the scanned image
+        image = Image.open(output_file)
+        arr = np.array(image)
 
-    # Return the path to the Zarr file and elapsed time
-    elapsed_time = time.time() - start_time
-    return {"elapsed_time": elapsed_time, "zarr_file": zarr_path}
+        # Open the Zarr store
+        store = zarr.NestedDirectoryStore(zarr_path)
+        root = zarr.group(store=store, overwrite=False)
 
+        # If dataset doesn't exist, create it with an extensible first dimension
+        if 'images' not in root:
+            zarr_array = root.zeros('images', shape=(0, *arr.shape), dtype=arr.dtype, chunks=(1, 1024, 1024, 3), 
+                                    compressor=zarr.Blosc(cname='zstd', clevel=3, shuffle=zarr.Blosc.SHUFFLE))
+        else:
+            zarr_array = root['images']
+
+        # Append new image to the Zarr array
+        zarr_array.resize(tuple([zarr_array.shape[0] + 1] + list(zarr_array.shape[1:])))
+        zarr_array[-1] = arr
+
+        print(f"New zarr shape: {zarr_array.shape}")
+        
+        elapsed_time = time.time() - start_time  # Calculate elapsed time
+
+        # Remove the temporary file
+        os.remove(output_file)
+
+        return {"elapsed_time": elapsed_time, "zarr_file": zarr_path}
 
 def run():
     from album.runner.api import get_args
-
     import time
 
-    print("Starting to scan.")    
-    
     timestep = int(get_args().timestep)
     try:
         while True:
-            res = scan_image_to_zarr(get_args().zarr_path, get_args().device)
+            res = scan_image_and_append_to_zarr(get_args().output_directory, get_args().zarr_path, get_args().device)
             time_taken = res["elapsed_time"]
-            sleep_time = max(
-                timestep - time_taken, 0
-            )  # Ensure non-negative sleep time
-            print(f"Finished scan at {time.time()}")
+            sleep_time = max(timestep - time_taken, 0)  # Ensure non-negative sleep time
             time.sleep(sleep_time)
     except KeyboardInterrupt:
         print("\nScript terminated by user.")
-
-
+        
 setup(
     group="physarum.computational.life",
     name="scan-as-zarr",
-    version="0.0.5",
+    version="0.0.6",
     title="Scan images as zarr.",
     description="An Album solution for scanning a timeseries into a zarr file.",
     solution_creators=["Kyle Harrington"],
