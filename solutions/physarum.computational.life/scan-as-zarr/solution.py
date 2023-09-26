@@ -74,6 +74,8 @@ def scan_image_and_append_to_zarr(zarr_path, device, resolution=300):
         zarr_array.resize(tuple([zarr_array.shape[0] + 1] + list(zarr_array.shape[1:])))
         zarr_array[-1] = arr
 
+        print(f"Number of nonzeros in arr: {np.count_nonzero(arr)}")
+
         print(f"New zarr shape: {zarr_array.shape}")
         
         elapsed_time = time.time() - start_time  # Calculate elapsed time
