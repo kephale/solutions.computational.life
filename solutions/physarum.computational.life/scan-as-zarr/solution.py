@@ -59,6 +59,8 @@ def scan_image_and_append_to_zarr(zarr_path, device, resolution=300):
         image = Image.open(output_file)
         arr = np.array(image)
 
+        print(f"Show images: {arr.sum()} with shape {arr.shape}")
+
         # Open the Zarr store
         store = zarr.NestedDirectoryStore(zarr_path)
         root = zarr.group(store=store, overwrite=False)
