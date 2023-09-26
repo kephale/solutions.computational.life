@@ -19,7 +19,7 @@ dependencies:
 )
 
 
-def scan_image_and_append_to_zarr(directory, zarr_path, device, resolution=300):
+def scan_image_and_append_to_zarr(zarr_path, device, resolution=300):
     from io import StringIO
     import subprocess
     import time
@@ -34,7 +34,7 @@ def scan_image_and_append_to_zarr(directory, zarr_path, device, resolution=300):
     current_datetime = datetime.now().strftime("%Y%m%d_%H%M%S")
 
     # Create a temporary file
-    with tempfile.NamedTemporaryFile(suffix='.png', dir=directory, delete=False) as temp:
+    with tempfile.NamedTemporaryFile(suffix='.png', dir=".", delete=False) as temp:
         output_file = temp.name
         cmd = [
             "scanimage",
@@ -90,7 +90,7 @@ def run():
     timestep = int(get_args().timestep)
     try:
         while True:
-            res = scan_image_and_append_to_zarr(get_args().output_directory, get_args().zarr_path, get_args().device)
+            res = scan_image_and_append_to_zarr(get_args().zarr_path, get_args().device)
             time_taken = res["elapsed_time"]
             sleep_time = max(timestep - time_taken, 0)  # Ensure non-negative sleep time
             time.sleep(sleep_time)
