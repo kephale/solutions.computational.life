@@ -74,7 +74,7 @@ def scan_image_and_append_to_zarr(zarr_path, device, resolution=300):
 
         # Append new image to the Zarr array
         zarr_array.resize(tuple([zarr_array.shape[0] + 1] + list(zarr_array.shape[1:])))
-        zarr_array[-1] = arr
+        zarr_array[-1] = np.asarray(arr)
 
         print(f"Number of nonzeros in arr: {np.count_nonzero(arr)}")
 
