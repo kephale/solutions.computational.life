@@ -63,6 +63,7 @@ def scan_image(directory, device, mastodon, should_toot, resolution=300):
         new_width = width // 2
         new_height = height // 2
         img_rescaled = img.resize((new_width, new_height), Image.LANCZOS)
+        img_rescaled = img_rescaled.transpose(Image.FLIP_TOP_BOTTOM)
         
         # Save the downscaled image to the temp file
         img_rescaled.save(temp_output_file, "PNG")
