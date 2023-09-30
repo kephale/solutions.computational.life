@@ -62,7 +62,7 @@ def scan_image(directory, device, mastodon, resolution=300):
         width, height = img.size
         new_width = width // 2
         new_height = height // 2
-        img_rescaled = img.resize((new_width, new_height), Image.ANTIALIAS)
+        img_rescaled = img.resize((new_width, new_height), Image.LANCZOS)
         
         # Save the downscaled image to the temp file
         img_rescaled.save(temp_output_file, "PNG")
