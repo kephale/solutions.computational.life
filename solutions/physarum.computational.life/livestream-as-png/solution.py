@@ -119,7 +119,7 @@ def run():
     
     try:
         while True:
-            res = scan_image(get_args().output_directory, get_args().device, mastodon, (scan_count % toot_frequence == 0))
+            res = scan_image(get_args().output_directory, get_args().device, mastodon, (scan_count % toot_frequency == 0))
             scan_count += 1
             time_taken = res["elapsed_time"]
             sleep_time = max(timestep - time_taken, 0)  # Ensure non-negative sleep time
