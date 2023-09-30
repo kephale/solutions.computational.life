@@ -11,10 +11,11 @@ env_file = StringIO(
   - defaults
 dependencies:
   - python=3.10
-  - pip
+  - pip   
   - pip:
     - Mastodon.py
     - python-dotenv
+    - appdirs
 """
 )
 
