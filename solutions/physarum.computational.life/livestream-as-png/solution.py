@@ -165,7 +165,7 @@ setup(
         {
             "name": "toot_frequency",
             "type": "string",
-            "description": "Frequency for sending toots (e.g., '10' for every 10 scans)",
+            "description": "Frequency for sending toots, every X timesteps",
             "required": True,
             "default": "10",
         },

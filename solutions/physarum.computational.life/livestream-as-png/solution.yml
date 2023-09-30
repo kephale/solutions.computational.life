@@ -14,7 +14,7 @@ args:
   required: true
   type: string
 - default: '10'
-  description: Frequency for sending toots (e.g., '10' for every 10 scans)
+  description: Frequency for sending toots, every X timesteps
   name: toot_frequency
   required: true
   type: string
@@ -36,6 +36,6 @@ tags:
 - acquisition
 - Python
 - mastodon
-timestamp: '2023-09-29T21:45:44.531250'
+timestamp: '2023-09-29T21:47:55.618605'
 title: Livestream images as PNGs.
 version: 0.0.1
