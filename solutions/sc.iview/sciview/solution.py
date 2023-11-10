@@ -2,7 +2,7 @@ import os
 import sys
 from album.runner.api import setup
 
-def get_data_path(app_name):
+def get_app_data_path(app_name):
     if os.name == 'nt':  # Windows
         data_path = os.environ.get('LOCALAPPDATA', os.path.expanduser('~\\AppData\\Local'))
     elif os.name == 'posix':
@@ -19,10 +19,10 @@ def get_app_name():
     return "album_sciview"
 
 def local_repository_path():
-    if not os.path.exists(get_data_path(get_app_name())):
-        os.makedirs(get_data_path(get_app_name()))
+    if not os.path.exists(get_app_data_path(get_app_name())):
+        os.makedirs(get_app_data_path(get_app_name()))
     
-    return os.path.join(get_data_path(get_app_name()), "git")
+    return os.path.join(get_app_data_path(get_app_name()), "git")
 
 
 def install():
@@ -55,7 +55,7 @@ def run():
 setup(
     group="sc.iview",
     name="sciview",
-    version="0.1.2",
+    version="0.1.3",
     title="sciview",
     description="sciview is a 3D/VR/AR visualization tool for large data from the Fiji community",
     authors=["Kyle Harrington"],
