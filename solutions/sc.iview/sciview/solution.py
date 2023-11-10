@@ -55,7 +55,7 @@ def run():
 setup(
     group="sc.iview",
     name="sciview",
-    version="0.1.1",
+    version="0.1.2",
     title="sciview",
     description="sciview is a 3D/VR/AR visualization tool for large data from the Fiji community",
     authors=["Kyle Harrington"],
