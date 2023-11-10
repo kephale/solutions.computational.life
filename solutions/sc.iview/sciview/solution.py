@@ -1,11 +1,28 @@
 import os
-from album.runner.api import setup, get_data_path
+import sys
+from album.runner.api import setup
+
+def get_data_path(app_name):
+    if os.name == 'nt':  # Windows
+        data_path = os.environ.get('LOCALAPPDATA', os.path.expanduser('~\\AppData\\Local'))
+    elif os.name == 'posix':
+        if sys.platform == 'darwin':  # macOS
+            data_path = os.path.expanduser('~/Library/Application Support')
+        else:  # Linux and other Unix-like OSes
+            data_path = os.environ.get('XDG_DATA_HOME', os.path.expanduser('~/.local/share'))
+    else:
+        raise Exception("Unsupported operating system")
+
+    return os.path.join(data_path, app_name)
+
+def get_app_name():
+    return "album_sciview"
 
 def local_repository_path():
-    if not os.path.exists(get_data_path()):
-        os.makedirs(get_data_path())
+    if not os.path.exists(get_data_path(get_app_name())):
+        os.makedirs(get_data_path(get_app_name()))
     
-    return os.path.join(get_data_path(), "git")
+    return os.path.join(get_data_path(get_app_name()), "git")
 
 
 def install():
