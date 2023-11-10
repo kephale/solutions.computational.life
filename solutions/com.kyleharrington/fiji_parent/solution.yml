@@ -1,0 +1,25 @@
+album_api_version: 0.3.1
+args: []
+changelog: Initial commit on this catalog
+cite:
+- text: SciJava community.
+  url: https://github.com/scijava
+covers:
+- description: Cover image for java-based software.
+  source: cover.png
+description: 'Parent of Java-based software solutions: Fiji, ImageJ, ImgLib2, etc.'
+documentation: []
+group: com.kyleharrington
+license: MIT
+name: fiji_parent
+solution_creators:
+- Kyle Harrington
+tags:
+- java
+- fiji
+- bigdataviewer
+- imagej
+- scijava
+timestamp: '2023-11-09T21:55:53.831854'
+title: Java-based software parent solution
+version: 0.1.1
