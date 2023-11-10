@@ -1,0 +1,28 @@
+album_api_version: 0.3.1
+args: []
+changelog: Switch to git/gradlew
+cite:
+- text: sciview team.
+  url: https://github.com/scenerygraphics/sciview
+covers:
+- description: Cover image for sciview. Shows a schematic of the sciview UI with an
+    electron microscopy image that contains segmented neurons.
+  source: cover.png
+description: sciview is a 3D/VR/AR visualization tool for large data from the Fiji
+  community
+documentation: []
+group: sc.iview
+license: MIT
+name: sciview
+solution_creators:
+- Kyle Harrington
+tags:
+- sciview
+- fiji
+- imagej
+- 3d
+- vr
+- ar
+timestamp: '2023-11-09T21:53:44.723625'
+title: sciview
+version: 0.1.1
