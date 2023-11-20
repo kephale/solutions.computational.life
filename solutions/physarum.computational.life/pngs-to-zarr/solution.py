@@ -52,7 +52,15 @@ def read_images_to_zarr(directory, zarr_path):
             continue
 
         img_path = os.path.join(directory, filename)
+        if not os.path.isfile(img_path):
+            print(f"File not found or is not a file: {img_path}")
+            continue
+
         img = cv2.imread(img_path)
+        if img is None:
+            print(f"Failed to read image: {img_path}")
+            continue
+
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # Convert to RGB
         circles = detect_circles(img)
 
