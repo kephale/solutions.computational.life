@@ -45,7 +45,8 @@ def read_images_to_zarr(directory, zarr_path):
         return None
     
     # Process each image
-    for filename in image_files:
+    for idx, filename in enumerate(image_files):
+        print(f"Processing {idx} of {len(image_files)}")
         timestamp = extract_timestamp(filename)
         if not timestamp:
             print(f"Timestamp not found in filename {filename}, skipping.")
