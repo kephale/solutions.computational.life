@@ -1,6 +1,6 @@
 album_api_version: 0.5.1
 args: []
-changelog: null
+changelog: Update imageio deps
 cite:
 - text: Kyle Harrington.
   url: https://kyleharrington.com
@@ -15,6 +15,6 @@ tags:
 - imaging
 - zarr
 - Python
-timestamp: '2023-09-15T14:34:59.407396'
+timestamp: '2023-11-19T22:54:51.947025'
 title: Parent environment for physarum.computational.life.
-version: 0.0.3
+version: 0.0.4
