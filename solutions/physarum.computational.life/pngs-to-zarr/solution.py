@@ -1,76 +1,76 @@
-from io import StringIO
+###album catalog: solutions.computational.life
 
 from album.runner.api import setup
-
-# Please import additional modules at the beginning of your method declarations.
-# More information: https://docs.album.solutions/en/latest/solution-development/
 
 
 def read_images_to_zarr(directory, zarr_path):
     """
-    Read RGB PNG images from a directory and store them in a Zarr array.
+    Read RGB PNG images from a directory, detect petri dishes in each image, and store each timepoint
+    for each petri dish in a separate Zarr group.
 
     Args:
         directory (str): Path to the directory containing the images.
         zarr_path (str): Path to the Zarr array where images will be stored.
     """
     import os
+    import cv2
     import imageio.v2 as imageio
     import numpy as np
+    import re
     import zarr
-
+    
     print(f"Reading from {directory} and writing to {zarr_path}")
 
     # Get the list of image files in the directory
     image_files = [f for f in os.listdir(directory) if f.endswith('.png')]
     image_files.sort()  # sort filenames to maintain order
 
-    # Load the first image to get shape and data type
-    sample_img = imageio.imread(os.path.join(directory, image_files[0]))
-    sample_img = np.moveaxis(sample_img, -1, 0)
-    img_shape = sample_img.shape
-    img_dtype = sample_img.dtype
-
     # Open the Zarr store
     store = zarr.NestedDirectoryStore(zarr_path)
     root = zarr.group(store=store, overwrite=True)
 
-    chunks = (1, 1024, 1024, 3)
-
-    # If dataset doesn't exist, create it with an extensible first dimension
-    if 'images' not in root:
-        zarr_array = root.zeros(
-            'images',
-            shape=(0, *img_shape),
-            dtype=img_dtype,
-            chunks=chunks,
-            compressor=zarr.Blosc(
-                cname='zstd', clevel=3, shuffle=zarr.Blosc.SHUFFLE
-            ),
-        )
-    else:
-        zarr_array = root['images']
-
+    def extract_timestamp(filename):
+        """
+        Extract timestamp from the filename.
+        Assumes filename format like 'physarum_YYYYMMDD_HHMMSS.png'.
+        """
+        mc = re.search(r'(\d{8}_\d{6})', filename)
+        return mc.group(0) if mc else None
+    
+    def detect_circles(image):
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=0, maxRadius=0)
+        if circles is not None:
+            return np.uint16(np.around(circles))
+        return None
+    
+    # Process each image
     for filename in image_files:
-        try:
-            img = imageio.imread(os.path.join(directory, filename))
-            img = np.moveaxis(img, -1, 0)
+        timestamp = extract_timestamp(filename)
+        if not timestamp:
+            print(f"Timestamp not found in filename {filename}, skipping.")
+            continue
 
-            # Resize the Zarr array to accommodate the new image
-            zarr_array.resize(tuple([zarr_array.shape[0] + 1] + list(zarr_array.shape[1:])))
+        img_path = os.path.join(directory, filename)
+        img = imageio.imread(img_path)
+        circles = detect_circles(img)
 
-            # Store the new image in the zarr array
-            zarr_array[-1] = img
+        if circles is not None:
+            for i, circle in enumerate(circles[0, :]):
+                x, y, r = circle[0], circle[1], circle[2]
+                cropped_img = img[y-r:y+r, x-r:x+r]
+                cropped_img = np.moveaxis(cropped_img, -1, 0)
 
-        except OSError as e:
-            if "broken data stream" in str(
-                e
-            ):  # Specifically handle this error
-                print(f"Error reading image '{filename}': {e}")
-            else:  # Handle any other OSErrors
-                print(f"Unexpected error reading image '{filename}': {e}")
+                # Create a unique group name using dish index and timestamp
+                group_name = f"petri_dish_{i}_{timestamp}"
+                dish_group = root.require_group(group_name)
 
-    print(f"All images stored in {zarr_path}")
+                # Store the cropped image in the group
+                dataset_name = f"timepoint_{timestamp}"
+                dish_group.array(dataset_name, cropped_img, chunks=(1024, 1024, 3), dtype=cropped_img.dtype,
+                                 compressor=zarr.Blosc(cname='zstd', clevel=3, shuffle=zarr.Blosc.SHUFFLE))
+
+    print(f"All petri dishes stored in {zarr_path}")
 
 
 def run():
@@ -82,7 +82,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="pngs-to-zarr",
-    version="0.0.12",
+    version="0.1.1",
     title="Convert PNGs to zarr.",
     description="An Album solution for converting a directory of PNGs into a zarr",
     solution_creators=["Kyle Harrington"],

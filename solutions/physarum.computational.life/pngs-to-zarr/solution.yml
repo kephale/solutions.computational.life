@@ -8,7 +8,7 @@ args:
   name: zarr_path
   required: true
   type: string
-changelog: Update
+changelog: Extract dishes as separate groups
 cite:
 - text: Kyle Harrington.
   url: https://kyleharrington.com
@@ -24,6 +24,6 @@ tags:
 - png
 - zarr
 - Python
-timestamp: '2023-09-20T11:22:14.258429'
+timestamp: '2023-11-19T22:44:13.497015'
 title: Convert PNGs to zarr.
-version: 0.0.12
+version: 0.1.1
