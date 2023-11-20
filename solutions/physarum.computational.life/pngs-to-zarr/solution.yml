@@ -8,7 +8,7 @@ args:
   name: zarr_path
   required: true
   type: string
-changelog: Upgrade parent environment to get opencv
+changelog: Switch to new parent environment
 cite:
 - text: Kyle Harrington.
   url: https://kyleharrington.com
@@ -24,6 +24,6 @@ tags:
 - png
 - zarr
 - Python
-timestamp: '2023-11-19T22:50:04.588445'
+timestamp: '2023-11-19T22:56:00.550421'
 title: Convert PNGs to zarr.
 version: 0.1.1
