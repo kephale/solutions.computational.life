@@ -52,7 +52,8 @@ def read_images_to_zarr(directory, zarr_path):
             continue
 
         img_path = os.path.join(directory, filename)
-        img = imageio.imread(img_path)
+        img = cv2.imread(img_path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # Convert to RGB
         circles = detect_circles(img)
 
         if circles is not None:
@@ -82,7 +83,7 @@ def run():
 setup(
     group="physarum.computational.life",
     name="pngs-to-zarr",
-    version="0.1.1",
+    version="0.1.2",
     title="Convert PNGs to zarr.",
     description="An Album solution for converting a directory of PNGs into a zarr",
     solution_creators=["Kyle Harrington"],
