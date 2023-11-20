@@ -110,7 +110,7 @@ setup(
         "parent": {
             "group": "physarum.computational.life",
             "name": "parent-environment",
-            "version": "0.0.2",
+            "version": "0.0.3",
         }
     },
 )
