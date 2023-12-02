@@ -1,0 +1,30 @@
+album_api_version: 0.5.1
+args:
+- description: Directory for input PNG images.
+  name: input_directory
+  required: true
+  type: string
+- description: Directory for output PNG images.
+  name: output_directory
+  required: true
+  type: string
+changelog: Initial deployment that splits an experiment into subdirectories for each
+  dish
+cite:
+- text: Kyle Harrington.
+  url: https://kyleharrington.com
+covers: []
+description: Split pngs into subdirs of cropped dishes.
+group: physarum.computational.life
+license: MIT
+name: split-dishes-pngs
+solution_creators:
+- Kyle Harrington
+tags:
+- imaging
+- png
+- zarr
+- Python
+timestamp: '2023-12-02T17:56:58.866559'
+title: Split pngs into subdirs of cropped dishes.
+version: 0.0.1
