@@ -1,0 +1,29 @@
+album_api_version: 0.5.1
+args:
+- description: Directory for PNG images.
+  name: png_directory
+  required: true
+  type: string
+- description: Path for saving zarrs
+  name: zarr_path
+  required: true
+  type: string
+changelog: Borrow mosaic detection and extraction code
+cite:
+- text: Kyle Harrington.
+  url: https://kyleharrington.com
+covers: []
+description: An Album solution for converting a directory of PNGs into a zarr
+group: physarum.computational.life
+license: MIT
+name: pngs-to-zarr
+solution_creators:
+- Kyle Harrington
+tags:
+- imaging
+- png
+- zarr
+- Python
+timestamp: '2023-11-19T23:10:50.236030'
+title: Convert PNGs to zarr.
+version: 0.1.2

@@ -1,0 +1,20 @@
+album_api_version: 0.5.1
+args:
+- description: Comma-separated list of PDB IDs to download
+  name: pdbs
+  type: string
+changelog: Initial version of pdb downloader
+description: A utility to download PDB files from a list of PDB IDs.
+group: kyleharrington
+license: MIT
+name: download-pdbs
+solution_creators:
+- Your Name
+tags:
+- bioinformatics
+- PDB
+- protein structures
+- data download
+timestamp: '2023-12-04T21:05:36.698646'
+title: PDB File Downloader
+version: 0.0.1

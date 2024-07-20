@@ -1,0 +1,27 @@
+album_api_version: 0.5.1
+args:
+- description: Path for saving zarrs
+  name: zarr_path
+  required: true
+  type: string
+changelog: null
+cite:
+- text: Kyle Harrington.
+  url: https://kyleharrington.com
+covers: []
+description: An Album solution for viewing a Physarum zarr
+group: physarum.computational.life
+license: MIT
+name: view-physarum-napari
+solution_creators:
+- Kyle Harrington
+tags:
+- imaging
+- zarr
+- Python
+- napari
+- visualization
+- Physarum
+timestamp: '2023-09-19T20:42:28.897698'
+title: Open a Physarum zarr in napari.
+version: 0.0.1

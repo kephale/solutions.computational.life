@@ -13,15 +13,21 @@ args:
   name: timestep
   required: true
   type: string
+- default: '10'
+  description: Frequency for sending toots, every X timesteps
+  name: toot_frequency
+  required: true
+  type: string
 changelog: null
 cite:
 - text: Kyle Harrington.
   url: https://kyleharrington.com
 covers: []
-description: An Album solution for scanning images into PNG files in a directory.
+description: An Album solution for scanning images into PNG files in a directory and
+  live tooting.
 group: physarum.computational.life
 license: MIT
-name: scan-as-png
+name: livestream-as-png
 solution_creators:
 - Kyle Harrington
 tags:
@@ -29,6 +35,7 @@ tags:
 - scanning
 - acquisition
 - Python
-timestamp: '2023-09-10T17:56:06.318881'
-title: Scan images as PNGs.
-version: 0.0.2
+- mastodon
+timestamp: '2023-09-29T21:58:41.026556'
+title: Livestream images as PNGs.
+version: 0.0.1

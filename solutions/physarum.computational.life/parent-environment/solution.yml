@@ -1,0 +1,20 @@
+album_api_version: 0.5.1
+args: []
+changelog: Update imageio deps
+cite:
+- text: Kyle Harrington.
+  url: https://kyleharrington.com
+covers: []
+description: A parent environment for physarum.computational.life solutions
+group: physarum.computational.life
+license: MIT
+name: parent-environment
+solution_creators:
+- Kyle Harrington
+tags:
+- imaging
+- zarr
+- Python
+timestamp: '2023-11-19T22:54:51.947025'
+title: Parent environment for physarum.computational.life.
+version: 0.0.4

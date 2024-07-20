@@ -1,7 +1,7 @@
 album_api_version: 0.5.1
 args:
-- description: Directory for saving results.
-  name: output_directory
+- description: Zarr path for saving results.
+  name: zarr_path
   required: true
   type: string
 - description: Device id for scanimage to use
@@ -18,10 +18,10 @@ cite:
 - text: Kyle Harrington.
   url: https://kyleharrington.com
 covers: []
-description: An Album solution for scanning images into PNG files in a directory.
+description: An Album solution for scanning a timeseries into a zarr file.
 group: physarum.computational.life
 license: MIT
-name: scan-as-png
+name: scan-as-zarr
 solution_creators:
 - Kyle Harrington
 tags:
@@ -29,6 +29,7 @@ tags:
 - scanning
 - acquisition
 - Python
-timestamp: '2023-09-10T17:56:06.318881'
-title: Scan images as PNGs.
-version: 0.0.2
+- zarr
+timestamp: '2023-09-25T23:09:33.778056'
+title: Scan images as zarr.
+version: 0.0.6

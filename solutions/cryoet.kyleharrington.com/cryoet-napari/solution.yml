@@ -1,0 +1,20 @@
+album_api_version: 0.5.1
+args: []
+changelog: Initial
+cite:
+- text: Kyle Harrington.
+  url: https://kyleharrington.com
+covers: []
+description: A parent environment for cryoet solutions
+group: cryoet.kyleharrington.com
+license: MIT
+name: cryoet-napari
+solution_creators:
+- Kyle Harrington
+tags:
+- imaging
+- cryoet
+- Python
+timestamp: '2023-09-21T10:26:57.522327'
+title: Parent environment for some napari cryoet tools.
+version: 0.0.1
