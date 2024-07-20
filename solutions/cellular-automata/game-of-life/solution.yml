@@ -1,0 +1,23 @@
+album_api_version: 0.5.1
+changelog: Initial deploy of GOL for pygfx
+cite:
+- text: Conway's Game of Life
+  url: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+covers:
+- description: Game of Life simulation example.
+  source: cover.png
+description: An album solution to run a Game of Life simulation using pygfx with zoom
+  functionality.
+group: cellular-automata
+license: MIT
+name: game-of-life
+solution_creators:
+- Kyle Harrington
+tags:
+- simulation
+- pygfx
+- Python
+- Game of Life
+timestamp: '2024-07-20T10:26:28.262949'
+title: Game of Life Simulation using pygfx
+version: 0.0.1
