@@ -28,7 +28,7 @@ args:
   name: boundary_size
   required: false
   type: float
-changelog: First version of a working swarm
+changelog: Initial deploy of working swarm in pygfx
 cite:
 - text: Boids Algorithm
   url: https://en.wikipedia.org/wiki/Boids
@@ -47,6 +47,6 @@ tags:
 - Python
 - Boids
 - swarm
-timestamp: '2024-07-20T15:05:23.468916'
+timestamp: '2024-07-20T15:07:27.192321'
 title: Boids Swarm Simulation using pygfx
 version: 0.0.1
