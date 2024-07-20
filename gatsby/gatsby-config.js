@@ -3,7 +3,7 @@ module.exports = {
   siteMetadata: {
     title: 'solutions.computational.life',
     subtitle: 'sharing computational life',
-    catalog_url: 'https://solutions.computational.life',
+    catalog_url: 'https://github.com/kephale/solutions.computational.life',
     menuLinks:[
       {
          name:'Catalog',
