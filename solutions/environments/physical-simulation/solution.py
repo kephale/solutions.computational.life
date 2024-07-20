@@ -30,6 +30,7 @@ dependencies:
   - h5py
   - dask
   - scikit-image
+  - pybullet
   - pip:
     - pyside6
     - glfw
@@ -44,7 +45,7 @@ dependencies:
 setup(
     group="environments",
     name="physical-simulation",
-    version="0.0.1",
+    version="0.0.2",
     title="An environment to support multiple physical visualized artificial life simulations",
     description="An album solution that contains a generalized environment for alife simulations.",
     solution_creators=["Kyle Harrington"],
