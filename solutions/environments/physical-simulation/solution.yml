@@ -1,0 +1,20 @@
+album_api_version: 0.5.1
+changelog: Deploy first version
+cite:
+- text: Kyle Harrington
+  url: https://kyleharrington.com
+covers: []
+description: An album solution that contains a generalized environment for alife simulations.
+group: environments
+license: MIT
+name: physical-simulation
+solution_creators:
+- Kyle Harrington
+tags:
+- simulation
+- visualization
+- Python
+- environment
+timestamp: '2024-07-20T14:17:50.840144'
+title: An environment to support multiple physical visualized artificial life simulations
+version: 0.0.1
