@@ -119,7 +119,7 @@ const getLicense = (solution) =>
 
 // New function to generate the GitHub source code URL
 const getSourceCodeUrl = (solution) => {
-  const baseGitHubUrl = "https://github.com/cellcanvas/album-catalog/blob/main/solutions";
+  const baseGitHubUrl = "https://github.com/kephale/solutions.computational.life/blob/main/solutions";
   return `${baseGitHubUrl}/${solution.group}/${solution.name}/solution.py`;
 };
 
