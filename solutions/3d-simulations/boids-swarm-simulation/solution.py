@@ -3,12 +3,12 @@
 from album.runner.api import setup, get_args
 
 def run():
-    import pygfx as gfx
+    import pybullet as p
+    import pybullet_data
     import numpy as np
+    import pygfx as gfx
     import wgpu
     from wgpu.gui.auto import WgpuCanvas, run
-    from scipy.spatial import KDTree
-    from numba import njit
 
     args = get_args()
 
@@ -21,7 +21,6 @@ def run():
     alignment_dist = args.alignment_dist if args.alignment_dist else 2.0
     cohesion_dist = args.cohesion_dist if args.cohesion_dist else 2.0
     boundary_size = args.boundary_size if args.boundary_size else 10.0
-    neighborhood_radius = max(separation_dist, alignment_dist, cohesion_dist) * 1.5
 
     positions = np.random.rand(num_boids, 3) * (2 * boundary_size) - boundary_size
     velocities = (np.random.rand(num_boids, 3) * 2 - 1) * max_speed
@@ -54,61 +53,65 @@ def run():
     def update_scene():
         for pos, vel, mesh in zip(positions, velocities, meshes):
             mesh.local.position = pos
-            target_pos = pos + vel
-            mesh.look_at(target_pos)
+            if np.linalg.norm(vel) > 1e-6:  # Avoid zero or near-zero velocities
+                target_pos = pos + vel
+                mesh.look_at(target_pos)
         renderer.render(scene, camera)
 
-    @njit
-    def normalize(v):
-        norm = np.linalg.norm(v)
-        if norm == 0: 
-            return v
-        return v / norm
+    p.connect(p.DIRECT)
+    p.setGravity(0, 0, 0)
+    p.setRealTimeSimulation(1)
+    p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
-    @njit
-    def apply_boids_rules(positions, velocities, neighbors, neighbors_len, num_boids, max_force, max_speed, separation_dist, alignment_dist, cohesion_dist):
-        for i in range(num_boids):
+    boid_ids = []
+    for i in range(num_boids):
+        boid_id = p.loadURDF("sphere2.urdf", basePosition=positions[i].tolist())
+        boid_ids.append(boid_id)
+
+    def apply_boids_rules():
+        nonlocal positions, velocities
+        for i, boid_id in enumerate(boid_ids):
+            aabbMin, aabbMax = p.getAABB(boid_id)
+            neighbors = p.getOverlappingObjects(aabbMin, aabbMax)
             separation_force = np.zeros(3)
             alignment_force = np.zeros(3)
             cohesion_force = np.zeros(3)
             alignment_count = 0
             cohesion_count = 0
 
-            for j in range(neighbors_len[i]):
-                neighbor_idx = neighbors[i, j]
-                if i != neighbor_idx:
-                    distance = np.linalg.norm(positions[i] - positions[neighbor_idx])
+            for neighbor in neighbors:
+                neighbor_id = neighbor[0]
+                if neighbor_id != boid_id:
+                    neighbor_pos = np.array(p.getBasePositionAndOrientation(neighbor_id)[0])
+                    neighbor_vel = np.array(p.getBaseVelocity(neighbor_id)[0])
+                    distance = np.linalg.norm(positions[i] - neighbor_pos)
 
                     if distance < separation_dist:
-                        separation_force += (positions[i] - positions[neighbor_idx])
-                    
+                        separation_force += (positions[i] - neighbor_pos)
+
                     if distance < alignment_dist:
-                        alignment_force += velocities[neighbor_idx]
+                        alignment_force += neighbor_vel
                         alignment_count += 1
 
                     if distance < cohesion_dist:
-                        cohesion_force += positions[neighbor_idx]
+                        cohesion_force += neighbor_pos
                         cohesion_count += 1
 
-            separation_force = normalize(separation_force) * max_force
+            separation_force = np.clip(separation_force, -max_force, max_force)
 
             if alignment_count > 0:
                 alignment_force /= alignment_count
-                alignment_force = normalize(alignment_force) * max_speed
-                alignment_force -= velocities[i]
-                alignment_force = normalize(alignment_force) * max_force
+                alignment_force = np.clip(alignment_force - velocities[i], -max_force, max_force)
 
             if cohesion_count > 0:
                 cohesion_force /= cohesion_count
-                cohesion_force = normalize(cohesion_force - positions[i]) * max_speed
-                cohesion_force -= velocities[i]
-                cohesion_force = normalize(cohesion_force) * max_force
+                cohesion_force = np.clip(cohesion_force - positions[i], -max_force, max_force)
 
             velocities[i] += separation_force + alignment_force + cohesion_force
-            velocities[i] = normalize(velocities[i]) * max_speed
+            velocities[i] = np.clip(velocities[i], -max_speed, max_speed)
 
-    @njit
-    def apply_boundary_conditions(positions, velocities, num_boids, boundary_size):
+    def apply_boundary_conditions():
+        nonlocal positions, velocities
         for i in range(num_boids):
             for dim in range(3):
                 if positions[i][dim] > boundary_size:
@@ -118,26 +121,15 @@ def run():
                     velocities[i][dim] = -velocities[i][dim]
                     positions[i][dim] = -boundary_size
 
-    def convert_neighbors(neighbors, num_boids):
-        max_len = max(len(neigh) for neigh in neighbors)
-        neighbors_array = np.zeros((num_boids, max_len), dtype=np.int32)
-        neighbors_len = np.zeros(num_boids, dtype=np.int32)
-        for i in range(num_boids):
-            for j, neighbor in enumerate(neighbors[i]):
-                neighbors_array[i, j] = neighbor
-            neighbors_len[i] = len(neighbors[i])
-        return neighbors_array, neighbors_len
-
     def animate():
-        nonlocal positions, velocities
+        nonlocal positions
         if simulation_running:
-            kdtree = KDTree(positions)
-            neighbors = kdtree.query_ball_tree(kdtree, neighborhood_radius)
-            neighbors, neighbors_len = convert_neighbors(neighbors, num_boids)
-
-            apply_boids_rules(positions, velocities, neighbors, neighbors_len, num_boids, max_force, max_speed, separation_dist, alignment_dist, cohesion_dist)
-            apply_boundary_conditions(positions, velocities, num_boids, boundary_size)
-            positions += velocities
+            apply_boids_rules()
+            apply_boundary_conditions()
+            for i, boid_id in enumerate(boid_ids):
+                positions[i] += velocities[i]
+                p.resetBasePositionAndOrientation(boid_id, positions[i].tolist(), [0, 0, 0, 1])
+                p.resetBaseVelocity(boid_id, linearVelocity=velocities[i].tolist())
             update_scene()
         canvas.request_draw()
 
@@ -147,6 +139,9 @@ def run():
         if event.key == "r":
             positions = np.random.rand(num_boids, 3) * (2 * boundary_size) - boundary_size
             velocities = (np.random.rand(num_boids, 3) * 2 - 1) * max_speed
+            for i, boid_id in enumerate(boid_ids):
+                p.resetBasePositionAndOrientation(boid_id, positions[i].tolist(), [0, 0, 0, 1])
+                p.resetBaseVelocity(boid_id, linearVelocity=velocities[i].tolist())
         elif event.key == "p":
             simulation_running = False
         elif event.key == "s":
@@ -158,12 +153,12 @@ def run():
 setup(
     group="3d-simulations",
     name="boids-swarm-simulation",
-    version="0.0.2",
-    title="Boids Swarm Simulation using pygfx",
-    description="An album solution to run a Boids swarm simulation using pygfx.",
+    version="0.0.4",
+    title="Boids Swarm Simulation using pygfx and pybullet",
+    description="An album solution to run a Boids swarm simulation using pygfx and pybullet.",
     solution_creators=["Kyle Harrington"],
     cite=[{"text": "Boids Algorithm", "url": "https://en.wikipedia.org/wiki/Boids"}],
-    tags=["simulation", "pygfx", "Python", "Boids", "swarm"],
+    tags=["simulation", "pygfx", "pybullet", "Python", "Boids", "swarm"],
     license="MIT",
     covers=[
         {
@@ -221,7 +216,7 @@ setup(
         "parent": {
             "group": "environments",
             "name": "physical-simulation",
-            "version": "0.0.1"
+            "version": "0.0.2"
         }
     }
 )

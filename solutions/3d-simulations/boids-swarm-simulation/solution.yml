@@ -28,14 +28,14 @@ args:
   name: boundary_size
   required: false
   type: float
-changelog: Update for better neighborhood handling
+changelog: Switch to pybullet
 cite:
 - text: Boids Algorithm
   url: https://en.wikipedia.org/wiki/Boids
 covers:
 - description: Boids swarm simulation example.
   source: cover.png
-description: An album solution to run a Boids swarm simulation using pygfx.
+description: An album solution to run a Boids swarm simulation using pygfx and pybullet.
 group: 3d-simulations
 license: MIT
 name: boids-swarm-simulation
@@ -44,9 +44,10 @@ solution_creators:
 tags:
 - simulation
 - pygfx
+- pybullet
 - Python
 - Boids
 - swarm
-timestamp: '2024-07-20T15:52:34.807294'
-title: Boids Swarm Simulation using pygfx
-version: 0.0.2
+timestamp: '2024-07-20T16:14:28.572824'
+title: Boids Swarm Simulation using pygfx and pybullet
+version: 0.0.4
