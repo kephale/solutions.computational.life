@@ -8,6 +8,7 @@ def run():
     import pygfx as gfx
     import wgpu
     from wgpu.gui.auto import WgpuCanvas, run
+    from scipy.spatial.transform import Rotation as R
 
     args = get_args()
 
@@ -18,6 +19,9 @@ def run():
     spring_constant = args.spring_constant if args.spring_constant else 0.5
     damping = args.damping if args.damping else 0.1
     boundary_size = args.boundary_size if args.boundary_size else 10.0
+    gravity = args.gravity if args.gravity else 0.005  # Weaker gravity
+    floor_elasticity = args.floor_elasticity if args.floor_elasticity else 0.5
+    sphere_radius = 0.2
 
     # Initialize positions in a straight line
     positions = np.zeros((num_agents, 3))
@@ -39,7 +43,7 @@ def run():
     camera.show_object(bounding_sphere, view_dir=(0, 0, 1), up=(0, 1, 0), scale=1.0)
     controller = gfx.TrackballController(camera, register_events=renderer)
 
-    geometry = gfx.sphere_geometry(radius=0.2)
+    geometry = gfx.sphere_geometry(radius=sphere_radius)
     material = gfx.MeshBasicMaterial(color=gfx.Color(0, 0, 1))
     meshes = [gfx.Mesh(geometry, material) for _ in range(num_agents)]
 
@@ -50,6 +54,14 @@ def run():
     box_geometry = gfx.box_geometry(boundary_size * 2, boundary_size * 2, boundary_size * 2)
     bounding_box = gfx.Mesh(box_geometry, box_material)
     scene.add(bounding_box)
+
+    floor_geometry = gfx.plane_geometry(boundary_size * 2, boundary_size * 2)
+    floor_material = gfx.MeshBasicMaterial(color=gfx.Color(0.5, 0.5, 0.5))
+    floor = gfx.Mesh(floor_geometry, floor_material)
+    floor.local.position = (0, -boundary_size, 0)
+    floor_rotation = R.from_euler('x', np.pi / 2).as_quat()
+    floor.local.rotation = floor_rotation
+    scene.add(floor)
 
     simulation_running = True
 
@@ -87,19 +99,28 @@ def run():
         too_fast = speeds > max_speed
         velocities[too_fast] *= max_speed / speeds[too_fast].reshape(-1, 1)
 
+    def apply_gravity_and_floor():
+        nonlocal velocities, positions
+        for i in range(num_agents):
+            velocities[i][1] -= gravity
+            if positions[i][1] < -boundary_size + sphere_radius:
+                positions[i][1] = -boundary_size + sphere_radius
+                velocities[i][1] *= -floor_elasticity
+
     def animate():
         nonlocal positions
         if simulation_running:
             apply_spring_forces()
             apply_joint_rotation()
             clamp_velocities()
+            apply_gravity_and_floor()
             positions += velocities
             for i in range(num_agents):
                 for dim in range(3):
                     if positions[i][dim] > boundary_size:
                         velocities[i][dim] = -velocities[i][dim]
                         positions[i][dim] = boundary_size
-                    elif positions[i][dim] < -boundary_size:
+                    elif positions[i][dim] < -boundary_size and dim != 1:
                         velocities[i][dim] = -velocities[i][dim]
                         positions[i][dim] = -boundary_size
             update_scene()
@@ -125,12 +146,12 @@ def run():
 setup(
     group="3d-simulations",
     name="snake-simulation",
-    version="0.0.1",
+    version="0.0.2",
     title="Snake-like Simulation using pygfx and NumPy",
-    description="An album solution to run a snake-like simulation using pygfx and NumPy with Hooke-style springs and sinusoidal joint rotations.",
+    description="An album solution to run a snake-like simulation using pygfx and NumPy with Hooke-style springs, sinusoidal joint rotations, gravity, and floor interactions.",
     solution_creators=["Kyle Harrington"],
     cite=[{"text": "Kyle Harrington", "url": "https://kyleharrington.com"}],
-    tags=["simulation", "pygfx", "NumPy", "Python", "snake", "spring"],
+    tags=["simulation", "pygfx", "NumPy", "Python", "snake", "spring", "gravity"],
     license="MIT",
     covers=[
         {
@@ -168,6 +189,18 @@ setup(
         {
             "name": "boundary_size",
             "description": "Size of the boundary for the simulation",
+            "type": "float",
+            "required": False,
+        },
+        {
+            "name": "gravity",
+            "description": "Gravitational force applied to the agents",
+            "type": "float",
+            "required": False,
+        },
+        {
+            "name": "floor_elasticity",
+            "description": "Elasticity of the floor when agents collide with it",
             "type": "float",
             "required": False,
         },

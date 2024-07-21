@@ -20,7 +20,15 @@ args:
   name: boundary_size
   required: false
   type: float
-changelog: Initial deploy, moderately interesting behavior
+- description: Gravitational force applied to the agents
+  name: gravity
+  required: false
+  type: float
+- description: Elasticity of the floor when agents collide with it
+  name: floor_elasticity
+  required: false
+  type: float
+changelog: Make agents harder, add floor
 cite:
 - text: Kyle Harrington
   url: https://kyleharrington.com
@@ -28,7 +36,7 @@ covers:
 - description: Snake-like simulation example.
   source: cover.png
 description: An album solution to run a snake-like simulation using pygfx and NumPy
-  with Hooke-style springs and sinusoidal joint rotations.
+  with Hooke-style springs, sinusoidal joint rotations, gravity, and floor interactions.
 group: 3d-simulations
 license: MIT
 name: snake-simulation
@@ -41,6 +49,7 @@ tags:
 - Python
 - snake
 - spring
-timestamp: '2024-07-20T21:37:18.683265'
+- gravity
+timestamp: '2024-07-20T21:43:52.573971'
 title: Snake-like Simulation using pygfx and NumPy
-version: 0.0.1
+version: 0.0.2
