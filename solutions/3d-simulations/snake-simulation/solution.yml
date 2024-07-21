@@ -1,0 +1,46 @@
+album_api_version: 0.5.1
+args:
+- description: Number of agents in the simulation
+  name: num_agents
+  required: false
+  type: integer
+- description: Maximum speed of agents
+  name: max_speed
+  required: false
+  type: float
+- description: Spring constant for Hookes Law
+  name: spring_constant
+  required: false
+  type: float
+- description: Damping factor for the springs
+  name: damping
+  required: false
+  type: float
+- description: Size of the boundary for the simulation
+  name: boundary_size
+  required: false
+  type: float
+changelog: Initial deploy, moderately interesting
+cite:
+- text: Hooke's Law
+  url: https://en.wikipedia.org/wiki/Hooke%27s_law
+covers:
+- description: Snake-like simulation example.
+  source: cover.png
+description: An album solution to run a snake-like simulation using pygfx and NumPy
+  with Hooke-style springs and sinusoidal joint rotations.
+group: 3d-simulations
+license: MIT
+name: snake-simulation
+solution_creators:
+- Kyle Harrington
+tags:
+- simulation
+- pygfx
+- NumPy
+- Python
+- snake
+- spring
+timestamp: '2024-07-20T21:34:35.604633'
+title: Snake-like Simulation using pygfx and NumPy
+version: 0.0.1
