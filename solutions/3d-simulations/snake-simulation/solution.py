@@ -129,7 +129,7 @@ setup(
     title="Snake-like Simulation using pygfx and NumPy",
     description="An album solution to run a snake-like simulation using pygfx and NumPy with Hooke-style springs and sinusoidal joint rotations.",
     solution_creators=["Kyle Harrington"],
-    cite=[{"text": "Hooke's Law", "url": "https://en.wikipedia.org/wiki/Hooke%27s_law"}],
+    cite=[{"text": "Kyle Harrington", "url": "https://kyleharrington.com"}],
     tags=["simulation", "pygfx", "NumPy", "Python", "snake", "spring"],
     license="MIT",
     covers=[

@@ -20,10 +20,10 @@ args:
   name: boundary_size
   required: false
   type: float
-changelog: Initial deploy, somewhat interesting behavior
+changelog: Initial deploy, moderately interesting behavior
 cite:
-- text: Hooke's Law
-  url: https://en.wikipedia.org/wiki/Hooke%27s_law
+- text: Kyle Harrington
+  url: https://kyleharrington.com
 covers:
 - description: Snake-like simulation example.
   source: cover.png
@@ -41,6 +41,6 @@ tags:
 - Python
 - snake
 - spring
-timestamp: '2024-07-20T21:35:45.320827'
+timestamp: '2024-07-20T21:37:18.683265'
 title: Snake-like Simulation using pygfx and NumPy
 version: 0.0.1
