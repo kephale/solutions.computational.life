@@ -8,7 +8,7 @@ args:
   description: Dropbox access token
   name: token
   type: string
-changelog: Initial deploy
+changelog: Fix env
 cite: []
 covers:
 - description: Dummy cover image.
@@ -24,6 +24,6 @@ solution_creators:
 tags:
 - template
 - python
-timestamp: '2024-07-28T09:17:28.614830'
+timestamp: '2024-07-28T10:20:50.076974'
 title: Dropbox write test for fsspec
-version: 0.0.1
+version: 0.0.2
