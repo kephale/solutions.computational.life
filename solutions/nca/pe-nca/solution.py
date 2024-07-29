@@ -48,9 +48,9 @@ def run():
     class NCA(nn.Module):
         def __init__(self, channel_n=16, fire_rate=0.5):
             super(NCA, self).__init__()
-            self.channel_n = channel_n
+            self.channel_n = channel_n + 2  # Adjust channel number for positional encoding
             self.fire_rate = fire_rate
-            self.perceive = nn.Conv2d(channel_n + 2, channel_n, 3, padding=1)  # +2 for positional encoding channels
+            self.perceive = nn.Conv2d(self.channel_n, channel_n, 3, padding=1)  # input channels increased
             self.update = nn.Sequential(
                 nn.Conv2d(channel_n, 128, 1),
                 nn.ReLU(),
@@ -61,7 +61,8 @@ def run():
             x = add_positional_encoding(x)
             dx = self.perceive(x)
             dx = self.update(dx)
-            update_mask = (torch.rand(dx.shape[0], 1, dx.shape[2], dx.shape[3]).cuda() < self.fire_rate).float()
+            update_mask = (torch.rand(dx.shape[0], 1, dx.shape[2], dx.shape[3]).to(x.device) < self.fire_rate).float()
+            x = x[:, :self.channel_n - 2, :, :]  # Ensure the size of x matches dx before addition
             x = x + dx * update_mask
             return x
 
@@ -78,7 +79,7 @@ def run():
         return loss_contrastive
 
     # Training loop with contrastive loss
-    def train(nca, optimizer, steps=5000, margin=1.0):
+    def train(nca, optimizer, steps=1000, margin=1.0):
         for step in range(steps):
             x = torch.randn(1, 16, 64, 64).to(device)
             target = torch.randn(1, 16, 64, 64).to(device)
@@ -127,7 +128,7 @@ def run():
 setup(
     group="nca",
     name="pe-nca",
-    version="0.0.1",
+    version="0.0.2",
     title="NCA Train and Run with Positional Encoding and Dropbox",
     description="An Album solution that trains and runs a neural cellular automata with positional encoding, saving output video to Dropbox.",
     authors=["Kyle Harrington"],
