@@ -31,19 +31,35 @@ dependencies:
   - scikit-image
   - napari
   - pyside2
+  - zarr
+  - xarray
+  - pillow
+  - pooch
+  - h5py
+  - pint
+  - fastapi
+  - trimesh
+  - tensorstore
   - pip:
     - imageio[ffmpeg]
     - torch>=2.0.0
     - opencv-python
     - pyGLM
     - noise
+    - git+https://github.com/kephale/napari-screen-recorder.git
+    - Mastodon.py
+    - ndjson
+    - mrcfile
+    - networkx
+    - album
+    - git+https://github.com/kephale/tootapari.git
 """
 )
 
 setup(
     group="environments",
     name="napari",
-    version="0.0.3",
+    version="0.0.4",
     title="An environment for visualizing artificial life simulations",
     description="An album solution that provides a generalized environment for visualizing alife simulations using napari.",
     solution_creators=["Kyle Harrington"],
