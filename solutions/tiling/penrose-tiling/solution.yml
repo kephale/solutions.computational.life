@@ -1,0 +1,27 @@
+album_api_version: 0.3.1
+args:
+- default: 5
+  description: Number of generations for tile deflation
+  name: num_generations
+  type: integer
+changelog: Initial deploy
+cite: []
+covers:
+- description: Penrose Tiling cover image.
+  source: cover.png
+description: An Album solution that generates and displays Penrose tiling patterns
+  using napari.
+group: tiling
+license: MIT
+name: penrose-tiling
+solution_creators:
+- Kyle Harrington
+tags:
+- tiling
+- python
+- napari
+- geometry
+- penrose
+timestamp: '2024-08-04T10:44:13.841661'
+title: Penrose Tiling
+version: 0.0.1
