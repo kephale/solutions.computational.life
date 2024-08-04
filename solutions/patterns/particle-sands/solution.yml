@@ -1,0 +1,25 @@
+album_api_version: 0.3.1
+args: []
+changelog: Initial deploy
+cite:
+- text: 'Original by Samuel Yan: https://openprocessing.org/user/293890?view=sketches&o=48.'
+  url: https://openprocessing.org/sketch/1353598
+covers:
+- description: Particle Pattern Generation cover image.
+  source: cover.png
+description: An Album solution that generates particle patterns and displays them
+  using Napari.
+group: patterns
+license: MIT
+name: particle-sands
+solution_creators:
+- Kyle Harrington
+tags:
+- particles
+- pattern
+- python
+- napari
+- particles
+timestamp: '2024-08-04T13:55:52.142185'
+title: Particle sands 02 pattern
+version: 0.0.1
