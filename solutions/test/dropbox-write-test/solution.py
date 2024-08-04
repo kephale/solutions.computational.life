@@ -30,7 +30,7 @@ def run():
 
     # Define the file path and content
     file_path = '/test_file.txt'
-    content = f"Hello, {name}! This is a test file."
+    content = 'Hello, Dropbox! This is a test file.'
 
     # Write the file to Dropbox
     with fs.open(file_path, 'w') as f:
@@ -42,7 +42,7 @@ def run():
 setup(
     group="test",
     name="dropbox-write-test",
-    version="0.0.3",
+    version="0.0.2",
     title="Dropbox write test for fsspec",
     description="An Album solution testing a dropbox setup.",
     authors=["Kyle Harrington"],
