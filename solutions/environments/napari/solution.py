@@ -36,13 +36,14 @@ dependencies:
     - torch>=2.0.0
     - opencv-python
     - pyGLM
+    - noise
 """
 )
 
 setup(
     group="environments",
     name="napari",
-    version="0.0.2",
+    version="0.0.3",
     title="An environment for visualizing artificial life simulations",
     description="An album solution that provides a generalized environment for visualizing alife simulations using napari.",
     solution_creators=["Kyle Harrington"],
