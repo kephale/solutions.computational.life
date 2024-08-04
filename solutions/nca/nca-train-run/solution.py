@@ -1,3 +1,5 @@
+###album catalog: solutions.computational.life
+
 from album.runner.api import get_args, setup
 
 env_file = """channels:
@@ -50,21 +52,20 @@ def run():
         def forward(self, x):
             dx = self.perceive(x)
             dx = self.update(dx)
-            update_mask = (torch.rand(dx.shape[0], 1, dx.shape[2], dx.shape[3]).cuda() < self.fire_rate).float()
+            update_mask = (torch.rand(dx.shape[0], 1, dx.shape[2], dx.shape[3]) < self.fire_rate).float()
             x = x + dx * update_mask
             return x
 
     # Initialize the NCA
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    nca = NCA().to(device)
+    nca = NCA().cuda()
     optimizer = torch.optim.Adam(nca.parameters(), lr=1e-3)
     loss_fn = nn.MSELoss()
 
     # Training loop
     def train(nca, optimizer, loss_fn, steps=1000):
         for step in range(steps):
-            x = torch.randn(1, 16, 64, 64).to(device)
-            target = torch.randn(1, 16, 64, 64).to(device)
+            x = torch.randn(1, 16, 64, 64).cuda()
+            target = torch.randn(1, 16, 64, 64).cuda()
             optimizer.zero_grad()
             output = nca(x)
             loss = loss_fn(output, target)
@@ -100,7 +101,7 @@ def run():
 setup(
     group="nca",
     name="nca-train-run",
-    version="0.0.2",
+    version="0.0.1",
     title="NCA Train and Run with Dropbox",
     description="An Album solution that trains and runs a neural cellular automata, saving output video to Dropbox.",
     authors=["Kyle Harrington"],
