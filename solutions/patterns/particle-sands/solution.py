@@ -88,8 +88,8 @@ def run():
 setup(
     group="patterns",
     name="particle-sands",
-    version="0.0.1",
-    title="Particle sands 02 pattern",
+    version="0.0.2",
+    title="Particle sands v02 pattern",
     description="An Album solution that generates particle patterns and displays them using Napari.",
     authors=["Kyle Harrington"],
     cite=[{"text": "Original by Samuel Yan: https://openprocessing.org/user/293890?view=sketches&o=48.", "url": "https://openprocessing.org/sketch/1353598"}],
@@ -106,7 +106,7 @@ setup(
         "parent": {
             "group": "environments",
             "name": "napari",
-            "version": "0.0.3"
+            "version": "0.0.4"
         }
     }
 )
