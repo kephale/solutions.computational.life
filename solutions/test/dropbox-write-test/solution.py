@@ -7,12 +7,8 @@ env_file = """channels:
   - defaults
 dependencies:
   - python=3.9
-  - pip
-  - pip:
-    - fsspec
-    - dropboxdrivefs
-    - dropbox
-    - requests
+  - fsspec
+  - dropboxdrivefs
 """
 
 
@@ -42,7 +38,7 @@ def run():
 setup(
     group="test",
     name="dropbox-write-test",
-    version="0.0.2",
+    version="0.0.1",
     title="Dropbox write test for fsspec",
     description="An Album solution testing a dropbox setup.",
     authors=["Kyle Harrington"],
