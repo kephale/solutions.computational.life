@@ -29,9 +29,9 @@ dependencies:
   - h5py
   - dask
   - scikit-image
-  - pybullet
+  - napari
+  - pyside2
   - pip:
-    - napari
     - imageio[ffmpeg]
     - torch>=2.0.0
     - opencv-python
@@ -42,7 +42,7 @@ dependencies:
 setup(
     group="environments",
     name="napari",
-    version="0.0.1",
+    version="0.0.2",
     title="An environment for visualizing artificial life simulations",
     description="An album solution that provides a generalized environment for visualizing alife simulations using napari.",
     solution_creators=["Kyle Harrington"],

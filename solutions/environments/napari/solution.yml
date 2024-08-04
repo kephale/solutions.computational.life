@@ -1,5 +1,5 @@
 album_api_version: 0.5.1
-changelog: Initial deploy
+changelog: Add pyside dep
 cite:
 - text: Kyle Harrington
   url: https://kyleharrington.com
@@ -17,6 +17,6 @@ tags:
 - Python
 - environment
 - napari
-timestamp: '2024-08-04T10:34:36.080630'
+timestamp: '2024-08-04T11:03:21.948280'
 title: An environment for visualizing artificial life simulations
-version: 0.0.1
+version: 0.0.2
