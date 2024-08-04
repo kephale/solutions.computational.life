@@ -8,7 +8,7 @@ args:
   description: Name of the output video file
   name: video_name
   type: string
-changelog: Fix tensor dims
+changelog: Initial deploy
 cite: []
 covers:
 - description: NCA output video cover image.
@@ -27,6 +27,6 @@ tags:
 - python
 - dropbox
 - positional encoding
-timestamp: '2024-07-28T22:43:54.077415'
+timestamp: '2024-07-28T21:34:18.825647'
 title: NCA Train and Run with Positional Encoding and Dropbox
-version: 0.0.2
+version: 0.0.1
