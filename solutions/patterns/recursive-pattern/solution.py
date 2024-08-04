@@ -62,7 +62,7 @@ def run():
 setup(
     group="patterns",
     name="recursive-pattern",
-    version="0.0.1",
+    version="0.0.2",
     title="Recursive Pattern Generation",
     description="An Album solution that generates recursive patterns and displays them using Napari.",
     authors=["Kyle Harrington"],
@@ -80,7 +80,7 @@ setup(
         "parent": {
             "group": "environments",
             "name": "napari",
-            "version": "0.0.2"
+            "version": "0.0.5"
         }
     }
 )
