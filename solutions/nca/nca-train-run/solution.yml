@@ -8,7 +8,7 @@ args:
   description: Name of the output video file
   name: video_name
   type: string
-changelog: Fix channels for video
+changelog: Add contrastive loss and make the video 300 frames long
 cite: []
 covers:
 - description: NCA output video cover image.
@@ -26,6 +26,6 @@ tags:
 - NCA
 - python
 - dropbox
-timestamp: '2024-07-28T20:54:53.725993'
+timestamp: '2024-07-28T19:15:49.029332'
 title: NCA Train and Run with Dropbox
-version: 0.0.4
+version: 0.0.3

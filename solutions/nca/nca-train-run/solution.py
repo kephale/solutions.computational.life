@@ -97,8 +97,6 @@ def run():
     for _ in range(300):
         output = nca(output)
         frame = output.cpu().detach().numpy()[0]
-        frame = frame.transpose(1, 2, 0)  # Ensure the frame has the shape (64, 64, 16)
-        frame = np.mean(frame, axis=2)  # Reduce the channel dimension to 1 by averaging
         frame = ((frame - frame.min()) / (frame.max() - frame.min()) * 255).astype(np.uint8)
         frame = cv2.cvtColor(frame, cv2.COLOR_GRAY2BGR)
         out.write(frame)
@@ -116,7 +114,7 @@ def run():
 setup(
     group="nca",
     name="nca-train-run",
-    version="0.0.4",
+    version="0.0.3",
     title="NCA Train and Run with Dropbox",
     description="An Album solution that trains and runs a neural cellular automata, saving output video to Dropbox.",
     authors=["Kyle Harrington"],
