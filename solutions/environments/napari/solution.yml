@@ -1,0 +1,22 @@
+album_api_version: 0.5.1
+changelog: Initial deploy
+cite:
+- text: Kyle Harrington
+  url: https://kyleharrington.com
+covers: []
+description: An album solution that provides a generalized environment for visualizing
+  alife simulations using napari.
+group: environments
+license: MIT
+name: napari
+solution_creators:
+- Kyle Harrington
+tags:
+- simulation
+- visualization
+- Python
+- environment
+- napari
+timestamp: '2024-08-04T10:34:36.080630'
+title: An environment for visualizing artificial life simulations
+version: 0.0.1
