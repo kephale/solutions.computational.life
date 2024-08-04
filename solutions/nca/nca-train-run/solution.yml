@@ -8,7 +8,7 @@ args:
   description: Name of the output video file
   name: video_name
   type: string
-changelog: Add contrastive loss and make the video 300 frames long
+changelog: Fix tensor locations
 cite: []
 covers:
 - description: NCA output video cover image.
@@ -26,6 +26,6 @@ tags:
 - NCA
 - python
 - dropbox
-timestamp: '2024-07-28T19:15:49.029332'
+timestamp: '2024-07-28T17:43:17.370789'
 title: NCA Train and Run with Dropbox
-version: 0.0.3
+version: 0.0.2
