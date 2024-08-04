@@ -1,0 +1,23 @@
+album_api_version: 0.3.1
+args: []
+changelog: Initial deploy
+cite: []
+covers:
+- description: Recursive Pattern Generation cover image.
+  source: cover.png
+description: An Album solution that generates recursive patterns and displays them
+  using Napari.
+group: patterns
+license: MIT
+name: recursive-pattern
+solution_creators:
+- Kyle Harrington
+tags:
+- recursive
+- pattern
+- python
+- napari
+- geometry
+timestamp: '2024-08-04T11:35:58.615316'
+title: Recursive Pattern Generation
+version: 0.0.1
