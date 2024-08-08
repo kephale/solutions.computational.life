@@ -1,0 +1,24 @@
+album_api_version: 0.3.1
+args: []
+changelog: Initial deploy
+cite:
+- text: 'Langton, C.G., 1986. Studying artificial life with cellular automata. Physica
+    D: nonlinear phenomena, 22(1-3), pp.120-149.'
+covers:
+- description: Langton's Ant Simulation cover image.
+  source: cover.png
+description: An Album solution that simulates Langton's Ant and displays it using
+  napari.
+group: automata
+license: MIT
+name: langtons-ant
+solution_creators:
+- Kyle Harrington
+tags:
+- Langton's Ant
+- automata
+- napari
+- simulation
+timestamp: '2024-08-08T18:22:14.589103'
+title: Langton's Ant Simulation
+version: 0.0.1
