@@ -1,0 +1,35 @@
+album_api_version: 0.3.1
+args:
+- default: 25
+  description: The angle in degrees for each turn.
+  name: angle
+  required: false
+  type: float
+- default: 5
+  description: The number of iterations to generate the L-system string.
+  name: iterations
+  required: false
+  type: integer
+changelog: Initial deploy
+cite:
+- text: Prusinkiewicz, P., & Lindenmayer, A. (1990). The algorithmic beauty of plants.
+    Springer Science & Business Media.
+covers:
+- description: Barnsley Fern L-System cover image.
+  source: cover.png
+description: An album solution that generates and displays a Barnsley Fern L-system
+  using napari. The fern transitions from brown to green as it grows.
+group: l-systems
+license: MIT
+name: barnsley-fern
+solution_creators:
+- Kyle Harrington
+tags:
+- L-System
+- Barnsley Fern
+- generative
+- napari
+- simulation
+timestamp: '2024-08-08T21:47:30.346258'
+title: Barnsley Fern L-System
+version: 0.0.4
