@@ -50,6 +50,7 @@ dependencies:
     - Mastodon.py
     - ndjson
     - mrcfile
+    - perlin-noise
     - networkx
     - album
     - git+https://github.com/kephale/tootapari.git
@@ -73,7 +74,7 @@ def run():
 setup(
     group="environments",
     name="napari",
-    version="0.0.5",
+    version="0.0.6",
     title="An environment for visualizing artificial life simulations",
     description="An album solution that provides a generalized environment for visualizing alife simulations using napari.",
     solution_creators=["Kyle Harrington"],

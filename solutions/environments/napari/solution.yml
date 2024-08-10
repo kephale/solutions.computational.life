@@ -1,5 +1,5 @@
 album_api_version: 0.5.1
-changelog: Enter the system shell with run
+changelog: Add perlin noise dependency
 cite:
 - text: Kyle Harrington
   url: https://kyleharrington.com
@@ -17,6 +17,6 @@ tags:
 - Python
 - environment
 - napari
-timestamp: '2024-08-04T17:17:18.399805'
+timestamp: '2024-08-10T17:18:24.314178'
 title: An environment for visualizing artificial life simulations
-version: 0.0.5
+version: 0.0.6
