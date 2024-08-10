@@ -1,0 +1,24 @@
+album_api_version: 0.3.1
+args: []
+changelog: Initial deploy
+cite:
+- text: Perlin, K., 1985. An image synthesizer. ACM SIGGRAPH Computer Graphics, 19(3),
+    pp.287-296.
+covers:
+- description: 3D Terrain Visualization cover image.
+  source: cover.png
+description: An Album solution that visualizes 3D terrain using Perlin noise and displays
+  it as a dynamically changing surface using napari.
+group: terrain
+license: MIT
+name: dynamic-terrain
+solution_creators:
+- Kyle Harrington
+tags:
+- Perlin Noise
+- 3D Terrain
+- napari
+- visualization
+timestamp: '2024-08-10T17:48:39.371124'
+title: 3D Terrain Visualization with Perlin Noise
+version: 0.0.2
