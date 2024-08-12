@@ -1,6 +1,6 @@
 album_api_version: 0.3.1
 args: []
-changelog: Update to use newer parent environment for video recording
+changelog: Bump environment
 cite: []
 covers:
 - description: Recursive Pattern Generation cover image.
@@ -18,6 +18,6 @@ tags:
 - python
 - napari
 - geometry
-timestamp: '2024-08-04T17:28:05.176430'
+timestamp: '2024-08-11T21:20:25.322029'
 title: Recursive Pattern Generation
-version: 0.0.2
+version: 0.0.3
