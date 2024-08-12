@@ -63,7 +63,7 @@ def run():
 setup(
     group="automata",
     name="langtons-ant",
-    version="0.0.1",
+    version="0.0.2",
     title="Langton's Ant Simulation",
     description="An Album solution that simulates Langton's Ant and displays it using napari.",
     authors=["Kyle Harrington"],
@@ -83,7 +83,7 @@ setup(
         "parent": {
             "group": "environments",
             "name": "napari",
-            "version": "0.0.5"
+            "version": "0.0.7"
         }
     }
 )
