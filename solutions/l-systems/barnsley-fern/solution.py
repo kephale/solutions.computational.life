@@ -68,7 +68,7 @@ def run():
         max_y = max(max(start[1], end[1]) for start, end in positions)
         return min_x, max_x, min_y, max_y
 
-    # Function to render the L-system in Napari
+    # Function to render the L-system in napari
     def render_lsystem_in_napari(positions, color_gradients):
         min_x, max_x, min_y, max_y = calculate_bounding_box(positions)
         canvas_width = int(max_x - min_x + 1)
@@ -101,7 +101,7 @@ def run():
 setup(
     group="l-systems",
     name="barnsley-fern",
-    version="0.0.4",
+    version="0.0.5",
     title="Barnsley Fern L-System",
     description="An album solution that generates and displays a Barnsley Fern L-system using napari. The fern transitions from brown to green as it grows.",
     authors=["Kyle Harrington"],
@@ -136,7 +136,7 @@ setup(
         "parent": {
             "group": "environments",
             "name": "napari",
-            "version": "0.0.5"
+            "version": "0.0.7"
         }
     }
 )
