@@ -153,7 +153,7 @@ def run():
 setup(
     group="3d-simulations",
     name="boids-swarm-simulation",
-    version="0.0.4",
+    version="0.0.5",
     title="Boids Swarm Simulation using pygfx and pybullet",
     description="An album solution to run a Boids swarm simulation using pygfx and pybullet.",
     solution_creators=["Kyle Harrington"],
@@ -216,7 +216,7 @@ setup(
         "parent": {
             "group": "environments",
             "name": "physical-simulation",
-            "version": "0.0.2"
+            "version": "0.0.3"
         }
     }
 )
