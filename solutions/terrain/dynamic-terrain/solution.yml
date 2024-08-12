@@ -1,6 +1,6 @@
 album_api_version: 0.3.1
 args: []
-changelog: Initial deploy
+changelog: Bump environment
 cite:
 - text: Perlin, K., 1985. An image synthesizer. ACM SIGGRAPH Computer Graphics, 19(3),
     pp.287-296.
@@ -19,6 +19,6 @@ tags:
 - 3D Terrain
 - napari
 - visualization
-timestamp: '2024-08-10T17:48:39.371124'
+timestamp: '2024-08-11T21:20:43.428324'
 title: 3D Terrain Visualization with Perlin Noise
-version: 0.0.2
+version: 0.0.3

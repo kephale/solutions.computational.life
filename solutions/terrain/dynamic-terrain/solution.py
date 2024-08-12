@@ -82,7 +82,7 @@ def run():
 setup(
     group="terrain",
     name="dynamic-terrain",
-    version="0.0.2",
+    version="0.0.3",
     title="3D Terrain Visualization with Perlin Noise",
     description="An Album solution that visualizes 3D terrain using Perlin noise and displays it as a dynamically changing surface using napari.",
     authors=["Kyle Harrington"],
@@ -102,7 +102,7 @@ setup(
         "parent": {
             "group": "environments",
             "name": "napari",
-            "version": "0.0.6"
+            "version": "0.0.7"
         }
     }
 )
