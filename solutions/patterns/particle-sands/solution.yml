@@ -1,6 +1,6 @@
 album_api_version: 0.3.1
 args: []
-changelog: Update to use more complex environment with recording capabilities
+changelog: Bump environment
 cite:
 - text: 'Original by Samuel Yan: https://openprocessing.org/user/293890?view=sketches&o=48.'
   url: https://openprocessing.org/sketch/1353598
@@ -20,6 +20,6 @@ tags:
 - python
 - napari
 - particles
-timestamp: '2024-08-04T16:46:14.478357'
+timestamp: '2024-08-11T21:20:04.322852'
 title: Particle sands v02 pattern
-version: 0.0.2
+version: 0.0.3

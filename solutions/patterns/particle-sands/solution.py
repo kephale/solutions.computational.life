@@ -88,7 +88,7 @@ def run():
 setup(
     group="patterns",
     name="particle-sands",
-    version="0.0.2",
+    version="0.0.3",
     title="Particle sands v02 pattern",
     description="An Album solution that generates particle patterns and displays them using Napari.",
     authors=["Kyle Harrington"],
@@ -106,7 +106,7 @@ setup(
         "parent": {
             "group": "environments",
             "name": "napari",
-            "version": "0.0.4"
+            "version": "0.0.7"
         }
     }
 )
