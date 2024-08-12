@@ -9,7 +9,6 @@ env_file = StringIO(
     """name: alife-visualization
 channels:
   - conda-forge
-  - defaults
   - pytorch
 dependencies:
   - python==3.10
@@ -74,7 +73,7 @@ def run():
 setup(
     group="environments",
     name="napari",
-    version="0.0.6",
+    version="0.0.7",
     title="An environment for visualizing artificial life simulations",
     description="An album solution that provides a generalized environment for visualizing alife simulations using napari.",
     solution_creators=["Kyle Harrington"],
