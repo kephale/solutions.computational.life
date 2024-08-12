@@ -7,7 +7,6 @@ env_file = StringIO(
     """name: game-of-life
 channels:
   - conda-forge
-  - defaults
 dependencies:
   - python>=3.10
   - pip
@@ -82,7 +81,7 @@ def run(canvas_size=800):
 setup(
     group="cellular-automata",
     name="game-of-life",
-    version="0.0.1",
+    version="0.0.2",
     title="Game of Life Simulation using pygfx",
     description="An album solution to run a Game of Life simulation using pygfx with zoom functionality.",
     solution_creators=["Kyle Harrington"],
