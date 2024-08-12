@@ -4,7 +4,7 @@ args:
   description: Number of generations for tile deflation
   name: num_generations
   type: integer
-changelog: Use new environment
+changelog: Bump environment
 cite: []
 covers:
 - description: Penrose Tiling cover image.
@@ -22,6 +22,6 @@ tags:
 - napari
 - geometry
 - penrose
-timestamp: '2024-08-04T11:07:09.445618'
+timestamp: '2024-08-11T21:21:05.551876'
 title: Penrose Tiling
-version: 0.0.3
+version: 0.0.4
