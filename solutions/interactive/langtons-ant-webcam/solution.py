@@ -179,7 +179,7 @@ def run():
 setup(
     group="interactive",
     name="langtons-ant-webcam",
-    version="0.0.1",
+    version="0.0.2",
     title="Webcam with Langton's Ant",
     description="An Album solution that captures a webcam feed and simulates Langton's Ant interacting with the feed using napari.",
     authors=["Kyle Harrington"],
