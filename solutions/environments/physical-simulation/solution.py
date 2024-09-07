@@ -38,13 +38,14 @@ dependencies:
     - opencv-python
     - pyGLM
     - git+https://github.com/pygfx/wgpu-py.git
+    - mediapipe
 """
 )
 
 setup(
     group="environments",
     name="physical-simulation",
-    version="0.0.3",
+    version="0.0.4",
     title="An environment to support multiple physical visualized artificial life simulations",
     description="An album solution that contains a generalized environment for alife simulations.",
     solution_creators=["Kyle Harrington"],
