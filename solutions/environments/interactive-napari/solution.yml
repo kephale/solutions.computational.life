@@ -1,5 +1,5 @@
 album_api_version: 0.5.1
-changelog: Initial deploy
+changelog: Add mediapipe dependency
 cite:
 - text: Kyle Harrington
   url: https://kyleharrington.com
@@ -17,6 +17,6 @@ tags:
 - Python
 - environment
 - napari
-timestamp: '2024-08-16T21:25:00.010723'
+timestamp: '2024-09-07T10:52:47.001919'
 title: An environment for interactive napari work
-version: 0.0.1
+version: 0.0.2

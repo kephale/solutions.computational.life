@@ -55,6 +55,7 @@ dependencies:
     - git+https://github.com/kephale/tootapari.git
     - pyvirtualcam
     - opencv-python-headless
+    - mediapipe
 """
 )
 
@@ -75,7 +76,7 @@ def run():
 setup(
     group="environments",
     name="interactive-napari",
-    version="0.0.1",
+    version="0.0.2",
     title="An environment for interactive napari work",
     description="An album solution that provides a generalized environment interactive napari solutions.",
     solution_creators=["Kyle Harrington"],
