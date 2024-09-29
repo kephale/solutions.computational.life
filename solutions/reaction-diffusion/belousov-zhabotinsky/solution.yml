@@ -1,6 +1,6 @@
 album_api_version: 0.5.1
 args: []
-changelog: Initial deploy
+changelog: Update to a thread_worker
 cite:
 - text: "Field, R.J., K\xF6r\xF6s, E., Noyes, R.M., 1972. Oscillations in chemical\
     \ systems. I. Detailed mechanism in a system showing temporal oscillations. Journal\
@@ -20,6 +20,6 @@ tags:
 - automata
 - napari
 - simulation
-timestamp: '2024-08-18T09:48:08.787974'
+timestamp: '2024-09-29T11:27:29.418417'
 title: Belousov-Zhabotinsky Reaction Simulation
-version: 0.0.1
+version: 0.0.2

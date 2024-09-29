@@ -6,7 +6,9 @@ def run():
     import napari
     import torch
     import numpy as np
-    from qtpy.QtCore import QTimer
+    from superqt import ensure_main_thread
+    from superqt.utils import thread_worker
+    import time
 
     # Autodetect the device
     device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
@@ -40,16 +42,17 @@ def run():
         return arr, q
 
     # Generator function that yields frames
+    @thread_worker
     def frame_generator(arr, alpha, beta, gamma):
         p = 0
         while True:
             arr, p = update_reaction(p, arr, alpha, beta, gamma)
-            yield arr[p]
+            yield arr[p].cpu().numpy()  # Yielding the CPU version for UI compatibility
+            time.sleep(0.02)
 
     # Example usage
     size = (450, 600)  # Size of the grid (height, width)
     arr = initialize_reaction(size, device)
-    gen = frame_generator(arr, alpha, beta, gamma)
 
     # Create the Napari viewer
     viewer = napari.Viewer()
@@ -59,23 +62,17 @@ def run():
     v_layer = viewer.add_image(np.zeros(size), name="Species B (V)")
     w_layer = viewer.add_image(np.zeros(size), name="Species C (W)")
 
-    # Function to update the image layers
-    def update_frame():
-        try:
-            # Get the next frames from the generator
-            frame = next(gen)
-            # Update the image layers with the new frames
-            u_layer.data = frame[0].cpu().numpy()
-            v_layer.data = frame[1].cpu().numpy()
-            w_layer.data = frame[2].cpu().numpy()
-        except StopIteration:
-            # Stop the timer when the generator is exhausted
-            timer.stop()
+    # Function to update the image layers using ensure_main_thread
+    @ensure_main_thread
+    def update_layers(frame):
+        u_layer.data = frame[0]
+        v_layer.data = frame[1]
+        w_layer.data = frame[2]
 
-    # Create a QTimer to periodically update the image layers
-    timer = QTimer()
-    timer.timeout.connect(update_frame)
-    timer.start(100)  # Update every 100 milliseconds
+    # Start the frame generation in a background thread
+    worker = frame_generator(arr, alpha, beta, gamma)
+    worker.yielded.connect(update_layers)  # Connect the yielded frame to the update function
+    worker.start()
 
     # Start the Napari event loop
     napari.run()
@@ -83,7 +80,7 @@ def run():
 setup(
     group="reaction-diffusion",
     name="belousov-zhabotinsky",
-    version="0.0.1",
+    version="0.0.2",
     title="Belousov-Zhabotinsky Reaction Simulation",
     description="Simulates the Belousov-Zhabotinsky reaction using the Oregonator model.",
     solution_creators=["Kyle Harrington"],
