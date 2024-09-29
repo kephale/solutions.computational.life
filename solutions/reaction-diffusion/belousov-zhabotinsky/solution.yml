@@ -1,6 +1,6 @@
 album_api_version: 0.5.1
 args: []
-changelog: Update to a thread_worker
+changelog: Add widget for pause, reinit, and adjusting parameters
 cite:
 - text: "Field, R.J., K\xF6r\xF6s, E., Noyes, R.M., 1972. Oscillations in chemical\
     \ systems. I. Detailed mechanism in a system showing temporal oscillations. Journal\
@@ -20,6 +20,6 @@ tags:
 - automata
 - napari
 - simulation
-timestamp: '2024-09-29T11:27:29.418417'
+timestamp: '2024-09-29T11:48:31.787934'
 title: Belousov-Zhabotinsky Reaction Simulation
-version: 0.0.2
+version: 0.0.3
