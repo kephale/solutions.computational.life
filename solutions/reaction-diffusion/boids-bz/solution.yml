@@ -1,0 +1,17 @@
+album_api_version: 0.5.1
+changelog: Visualization is reasonable but effect is only 1way
+description: Simulates a boids swarm painting trails in a Belousov-Zhabotinsky reaction
+  field.
+group: reaction-diffusion
+license: MIT
+name: boids-bz
+solution_creators:
+- Kyle Harrington
+tags:
+- reaction-diffusion
+- BZ reaction
+- boids
+- napari
+timestamp: '2024-11-11T13:50:17.942049'
+title: Boids with BZ Reaction Trail
+version: 0.0.2
