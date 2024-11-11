@@ -13,7 +13,6 @@ channels:
 dependencies:
   - python==3.10
   - pip
-  - pygfx
   - numpy<2
   - jupyter
   - ipywidgets
@@ -30,6 +29,7 @@ dependencies:
   - dask
   - scikit-image
   - pybullet
+  - napari
   - pip:
     - pyside6
     - glfw
@@ -37,7 +37,8 @@ dependencies:
     - torch>=2.0.0
     - opencv-python
     - pyGLM
-    - git+https://github.com/pygfx/wgpu-py.git
+    - git+https://github.com/pygfx/pygfx
+    - git+https://github.com/pygfx/wgpu-py.git@14e84e1956c608c592061f44a619430f0a2d7aa0
     - mediapipe
 """
 )
@@ -45,7 +46,7 @@ dependencies:
 setup(
     group="environments",
     name="physical-simulation",
-    version="0.0.4",
+    version="0.0.9",
     title="An environment to support multiple physical visualized artificial life simulations",
     description="An album solution that contains a generalized environment for alife simulations.",
     solution_creators=["Kyle Harrington"],

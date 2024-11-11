@@ -1,5 +1,5 @@
 album_api_version: 0.5.1
-changelog: Add mediapipe dependency
+changelog: ''
 cite:
 - text: Kyle Harrington
   url: https://kyleharrington.com
@@ -15,6 +15,6 @@ tags:
 - visualization
 - Python
 - environment
-timestamp: '2024-09-07T09:45:52.320386'
+timestamp: '2024-11-11T12:42:25.302627'
 title: An environment to support multiple physical visualized artificial life simulations
-version: 0.0.4
+version: 0.0.9
