@@ -1,10 +1,10 @@
 album_api_version: 0.3.1
 args:
-- default: 5
+- default: 6
   description: Number of generations for tile deflation
   name: num_generations
   type: integer
-changelog: Initial deploy
+changelog: Bump environment
 cite: []
 covers:
 - description: Penrose Tiling cover image.
@@ -22,6 +22,6 @@ tags:
 - napari
 - geometry
 - penrose
-timestamp: '2024-08-04T10:44:13.841661'
+timestamp: '2024-08-11T21:21:05.551876'
 title: Penrose Tiling
-version: 0.0.1
+version: 0.0.4

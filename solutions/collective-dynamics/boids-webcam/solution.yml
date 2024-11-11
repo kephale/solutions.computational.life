@@ -1,0 +1,24 @@
+album_api_version: 0.5.1
+args: []
+changelog: Initial version
+cite:
+- text: 'Reynolds, C.W., 1987. Flocks, herds and schools: A distributed behavioral
+    model. ACM SIGGRAPH Computer Graphics, 21(4), pp.25-34.'
+covers:
+- description: Webcam with Boids cover image.
+  source: cover.png
+description: An Album solution that captures a webcam feed and simulates boids interacting
+  with the feed using napari.
+group: collective-dynamics
+license: MIT
+name: boids-webcam
+solution_creators:
+- Kyle Harrington
+tags:
+- Boids
+- flocking
+- napari
+- webcam
+timestamp: '2024-09-07T09:39:50.516138'
+title: Webcam with Boids
+version: 0.0.1

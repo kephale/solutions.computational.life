@@ -107,7 +107,7 @@ def run():
 setup(
     group="tiling",
     name="penrose-tiling",
-    version="0.0.1",
+    version="0.0.4",
     title="Penrose Tiling",
     description="An Album solution that generates and displays Penrose tiling patterns using napari.",
     authors=["Kyle Harrington"],
@@ -123,7 +123,7 @@ setup(
         {
             "name": "num_generations",
             "type": "integer",
-            "default": 5,
+            "default": 6,
             "description": "Number of generations for tile deflation"
         }
     ],
@@ -132,7 +132,7 @@ setup(
         "parent": {
             "group": "environments",
             "name": "napari",
-            "version": "0.0.1"
+            "version": "0.0.7"
         }
     }
 )

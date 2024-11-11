@@ -1,6 +1,6 @@
 album_api_version: 0.5.1
 args: []
-changelog: null
+changelog: Update to use napari parent environment
 cite:
 - doi: 10.5281/zenodo.3555620
   text: 'napari contributors (2019). napari: a multi-dimensional image viewer for
@@ -15,10 +15,9 @@ license: MIT
 name: napari
 solution_creators:
 - Kyle Harrington
-- Deborah Schmidt
 tags:
 - Python
 - napari
-timestamp: '2023-07-29T14:15:08.845863'
+timestamp: '2024-08-04T11:39:10.856425'
 title: Open napari
-version: 0.0.1-SNAPSHOT
+version: 0.0.2

@@ -1,5 +1,5 @@
 album_api_version: 0.5.1
-changelog: Initial deploy of GOL for pygfx
+changelog: Remove defaults
 cite:
 - text: Conway's Game of Life
   url: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
@@ -18,6 +18,6 @@ tags:
 - pygfx
 - Python
 - Game of Life
-timestamp: '2024-07-20T10:26:28.262949'
+timestamp: '2024-08-11T21:18:43.305405'
 title: Game of Life Simulation using pygfx
-version: 0.0.1
+version: 0.0.2

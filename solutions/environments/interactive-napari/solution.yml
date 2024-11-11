@@ -1,0 +1,22 @@
+album_api_version: 0.5.1
+changelog: Add mediapipe dependency
+cite:
+- text: Kyle Harrington
+  url: https://kyleharrington.com
+covers: []
+description: An album solution that provides a generalized environment interactive
+  napari solutions.
+group: environments
+license: MIT
+name: interactive-napari
+solution_creators:
+- Kyle Harrington
+tags:
+- simulation
+- visualization
+- Python
+- environment
+- napari
+timestamp: '2024-09-07T10:52:47.001919'
+title: An environment for interactive napari work
+version: 0.0.2

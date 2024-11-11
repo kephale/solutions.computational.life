@@ -1,0 +1,26 @@
+album_api_version: 0.5.1
+args: []
+changelog: Initial version
+cite:
+- text: 'Reynolds, C.W., 1987. Flocks, herds and schools: A distributed behavioral
+    model. ACM SIGGRAPH Computer Graphics, 21(4), pp.25-34.'
+covers:
+- description: Painting a 3D volume using a swarm controlled by body.
+  source: cover.png
+description: An Album solution that simulates boids interacting with hand landmarks
+  tracked from webcam and paints boid positions into a 3D image.
+group: collective-dynamics
+license: MIT
+name: boids-paint
+solution_creators:
+- Kyle Harrington and Iris Harrington
+tags:
+- Boids
+- flocking
+- pose
+- 3D
+- napari
+- webcam
+timestamp: '2024-09-14T08:01:05.348699'
+title: 3D Boids Paint with Pose Tracking controlling boids
+version: 0.0.2

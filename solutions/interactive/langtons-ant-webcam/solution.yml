@@ -1,0 +1,24 @@
+album_api_version: 0.3.1
+args: []
+changelog: Add cover image
+cite:
+- text: 'Langton, C.G., 1986. Studying artificial life with cellular automata. Physica
+    D: nonlinear phenomena, 22(1-3), pp.120-149.'
+covers:
+- description: Webcam with Langton's Ant cover image.
+  source: cover.png
+description: An Album solution that captures a webcam feed and simulates Langton's
+  Ant interacting with the feed using napari.
+group: interactive
+license: MIT
+name: langtons-ant-webcam
+solution_creators:
+- Kyle Harrington
+tags:
+- Langton's Ant
+- automata
+- napari
+- webcam
+timestamp: '2024-08-16T21:42:03.647898'
+title: Webcam with Langton's Ant
+version: 0.0.2
