@@ -16,5 +16,8 @@ Remove defaults
 ## [0.0.2] - 2024-07-20
 Add pybullet dependency
 
+## [0.0.10] - 2024-11-11
+Updates for new-wgpu
+
 ## [0.0.1] - 2024-07-20
 Deploy first version

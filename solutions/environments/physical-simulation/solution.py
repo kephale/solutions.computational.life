@@ -37,8 +37,8 @@ dependencies:
     - torch>=2.0.0
     - opencv-python
     - pyGLM
-    - git+https://github.com/pygfx/pygfx
-    - git+https://github.com/pygfx/wgpu-py.git@14e84e1956c608c592061f44a619430f0a2d7aa0
+    - git+https://github.com/pygfx/pygfx.git@new-wgpu
+    - git+https://github.com/pygfx/wgpu-py.git
     - mediapipe
 """
 )
@@ -46,7 +46,7 @@ dependencies:
 setup(
     group="environments",
     name="physical-simulation",
-    version="0.0.9",
+    version="0.0.10",
     title="An environment to support multiple physical visualized artificial life simulations",
     description="An album solution that contains a generalized environment for alife simulations.",
     solution_creators=["Kyle Harrington"],
